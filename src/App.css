@@ -98,3 +98,16 @@
 .center {
   text-align: center;
 }
+
+.oNas, .kontakt, .fotogaleria, .registracia {
+  background-color: #1B2223;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+}
