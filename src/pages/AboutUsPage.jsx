@@ -1,7 +1,9 @@
 import NavigationBar from "../components/NavigationBar";
 import HeaderWithImage from "../components/HeaderWithImage";
+import WelcomeSection from "../page_sections/WelcomeSection";
 
 import imageONas from "../assets/images/o_nas.jpg";
+import TeamSection from "../page_sections/TeamSection";
 
 const AboutUsPage = () => {
     return (
@@ -12,6 +14,9 @@ const AboutUsPage = () => {
                 bgImage={imageONas}
                 shapeDivider="shapedivider_waves-with-pizza"
             />
+            <WelcomeSection/>
+
+            <TeamSection/>
         </div>
     )
 }
