@@ -9,8 +9,8 @@ const NavListBar = () => {
                 <NavItem to="/" itemIcon={faUtensils}>Menu</NavItem>
                 <NavItem to="/" itemIcon={faCamera}>Fotogaléria</NavItem>
                 <NavItem to="/" itemIcon={faStar}>Recenzie</NavItem>
-                <NavItem to="/" itemIcon={faEnvelope}>Kontakt</NavItem>
-                <NavItem to="/about-us" itemIcon={faInfoCircle}>o nás</NavItem>
+                <NavItem to="/contact" itemIcon={faEnvelope}>Kontakt</NavItem>
+                <NavItem to="/about-us" itemIcon={faInfoCircle}>O nás</NavItem>
             </ul>
         </div>
     )

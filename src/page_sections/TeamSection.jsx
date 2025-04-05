@@ -11,11 +11,11 @@ const TeamSection = () => {
     const [ref, isVisible] = useInViewAnim();
 
     return (
-        <section className="shapedividers_com-2075"
+        <section className="shapedivider-dripping"
         style={{ backgroundColor:"#3A4F50"}}>
         <div ref={ref} 
         className={`container ${isVisible ? "grow-animation" : "hidden"}`}>
-        <h2 className="display-5 custom-heading text-shadow text-center whiteColor" style={{ marginTop: 100 }}> <span style={{ fontWeight: 'bold'}}>NÁŠ TÍM KUCHÁROV</span></h2>
+        <h2 className="display-5 custom-heading text-shadow text-center whiteColor" style={{ marginTop: 200 }}> <span style={{ fontWeight: 'bold'}}>NÁŠ TÍM KUCHÁROV</span></h2>
             <div className="row" style={{ marginTop: 50 }}>
                 <TeamItem
                     imgMember={lukasImg}
