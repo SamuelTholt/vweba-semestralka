@@ -1,0 +1,9 @@
+services:
+  mongoDB:
+    image: "mongo"
+    command: mongod --logpath /dev/null
+    restart: unless-stopped
+    volumes:
+      - ./databaseData:/data/databaseData
+    ports:
+      - 27017:27017
