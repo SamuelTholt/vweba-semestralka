@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import NavItem from "./NavItem";
 import { faHome, faUtensils, faCamera, faStar, faEnvelope, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import UserDropdown from './UserDropdown';
 const NavListBar = () => {
     return (
         <div className="menuList">
@@ -11,6 +12,7 @@ const NavListBar = () => {
                 <NavItem to="/" itemIcon={faStar}>Recenzie</NavItem>
                 <NavItem to="/contact" itemIcon={faEnvelope}>Kontakt</NavItem>
                 <NavItem to="/about-us" itemIcon={faInfoCircle}>O nás</NavItem>
+                <UserDropdown/>
             </ul>
         </div>
     )
