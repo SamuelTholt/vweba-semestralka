@@ -1,8 +1,8 @@
 import { body, validationResult } from "express-validator";
-import checkValidation from "../utils/Helpers";
+import jwt from "jsonwebtoken";
 
 import userModel from "../models/user.model.js"
-import HttpError from "../utils/HttpError.js";
+
 
 const signUp = [
     body("name").not().isEmpty().isLength({ min: 4 }).withMessage("Je potrebne zadat meno (minimalne 4 znaky)!"),
@@ -25,16 +25,31 @@ const signUp = [
       .isLength({ min: 8 })
       .withMessage("Heslo musí mať minimálne 8 znakov"),
     async (req, res) => {
-        checkValidation(validationResult(req));
+        const result = validationResult(req);
+        const validationErrors = result.array().map(err => ({ msg: err.msg }));
+        const customErrors = [];
+
         const { email, name, password, password_repeat } = req.body;
 
         const existUser = await userModel.findOne({ email });
         if (existUser) {
-            throw new HttpError("Email sa už používa", 400);
+          console.log("Taký email už existuje!");
+          customErrors.push({ msg: "Taký email už existuje!" });
+          
         }
 
         if(password !== password_repeat) {
-            throw new HttpError("Heslá sa nezhodujú", 400);
+          console.log("Heslá sa nezhodujú!");
+          customErrors.push({ msg: "Heslá sa nezhodujú!" });
+          //throw new HttpError("Heslá sa nezhodujú", 400);
+          //return res.status(400).json({  errors: [{ msg: "Heslá sa nezhodujú!" }] });
+        }
+
+        const allErrors = [...validationErrors, ...customErrors];
+
+        if (allErrors.length > 0) {
+          console.log("Validation or auth errors:", allErrors);
+          return res.status(400).json({ errors: allErrors });
         }
 
         const userRecord = new userModel({ name, email });
@@ -46,26 +61,40 @@ const signUp = [
 ];
 
 const signIn = [
-    body("email").isEmail().not().isEmpty().withMessage("Neplatný email"),
-    body("password").not().isEmpty().withMessage("Heslo nemôže byť prázdne"),
+    body("email").isEmail().not().isEmpty().withMessage("Neplatný email!"),
+    body("password").not().isEmpty().withMessage("Heslo nemôže byť prázdne!"),
     async (req, res) => {
-      checkValidation(validationResult(req));
+      const result = validationResult(req);
+      const validationErrors = result.array().map(err => ({ msg: err.msg }));
+      const customErrors = [];
+
       const { email, password } = req.body;
       const existingUser = await userModel.findOne({ email });
 
       if (!existingUser) {
-        throw new HttpError("Neplatne meno alebo heslo", 400);
+        console.log( "Neplatný email alebo taký email neexistuje!" );
+        customErrors.push({ msg:  "Neplatný email alebo taký email neexistuje!" });
       }
       if (!existingUser.checkHeslo(password)) {
-        throw new HttpError("Neplatne meno alebo heslo", 400);
+        console.log( "Zlé zadané heslo!" );
+        customErrors.push({ msg:  "Zlé zadané heslo!" });
       }
+
+      const allErrors = [...validationErrors, ...customErrors];
+
+      if (allErrors.length > 0) {
+        console.log("Validation or auth errors:", allErrors);
+        return res.status(400).json({ errors: allErrors });
+      }
+
       const token = jwt.sign(
         {
           userId: existingUser._id,
           userName: existingUser.name,
           userRole: existingUser.role
         },
-        process.env.API_KEY
+        process.env.API_KEY,
+        { expiresIn: '1h' }
       );
       res.status(200).send({ token });
     },

@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 import crypto from "crypto";
 
@@ -25,4 +25,4 @@ userSchema.methods.checkHeslo =  function (password) {
     return this.password === hash_pwd;
 }
 
-module.exports = mongoose.model("User", userSchema);
+export default mongoose.model("User", userSchema);

@@ -132,6 +132,53 @@ html {
   color: #F4FEFD;
 }
 
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.error {
+  color: #ff0000;
+}
+
+.card-inner{
+  margin-left: 4rem;
+}
+
+.dropdown {
+  margin-top: 10px;
+}
+
+.card-img-left {
+  width: 45%;
+  background: no-repeat scroll center url("../src/assets/images/LK_pizza_bckground.jpg");
+  background-size: cover;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
 
 /* --Animacie-- */
 

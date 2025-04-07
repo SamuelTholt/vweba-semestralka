@@ -1,19 +1,17 @@
 import { useState } from "react";
 import axios from "axios";
 
-const RegisterForm = () => {
-    const [formRegisterData, setFormRegisterData] = useState({
-        name: "",
+const LoginForm = () => {
+    const [formLoginData, setFormLoginData] = useState({
         email: "",
-        password: "",
-        password_repeat: ""
+        password: ""
     });
 
-    const [err, setErr] = useState([]);
+    const [err, setErr] = useState("");
     const [success, setSuccess] = useState("");
 
     const handleChange = (e) => {
-        setFormRegisterData((prev) => ({ ...prev, [e.target.name] : e.target.value }));
+        setFormLoginData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
     const handleSubmit = async (e) => {
@@ -22,21 +20,23 @@ const RegisterForm = () => {
         setSuccess("");
 
         try {
-            const resData = await axios.post("http://localhost:5000/public/signUp", formRegisterData);
-            //console.log(resData.data);
-            setSuccess("Registracia bola úspešná!");
+            const resData = await axios.post("http://localhost:5000/public/signIn", formLoginData);
+            console.log(resData.data);
+            localStorage.setItem("token", resData.data.token);
+            setSuccess("Prihlásenie bolo úspešné!");
             window.location.href = "/";
         } catch (error) {
             console.log("Server response error:", error.response?.data);
+            // Spracovanie chýb zo servera
             if (error.response && error.response.data.errors) {
+                // Ak server posiela chyby v poli `errors`
                 const errorMessages = error.response.data.errors.map(err => err.msg);
-                setErr(errorMessages);
+                setErr(errorMessages);  // Uložíme chyby ako pole
             } else {
-                setErr(["Chyba pri registrácii."]);
+                setErr(["Chyba pri prihlásení."]);  // Ak chyba neexistuje alebo je neznáma
             }
         }
     };
-
     return (
         <div className="registracia">
             <div className="container">
@@ -48,10 +48,6 @@ const RegisterForm = () => {
                             <div className="card-body p-4 p-sm-5">
                                 <h5 className="card-title text-center mb-5 fw-light fs-5"></h5>
                                 <form onSubmit={handleSubmit}>
-                                <div className="form-floating mb-3">
-                                    <input type="text" className="form-control" id="floatingInputUsername" name="name" placeholder="Name" onChange={handleChange} required autoFocus/>
-                                    <label htmlFor="floatingInputUsername">Name</label>
-                                </div>
 
                                 <div className="form-floating mb-3">
                                     <input type="email" className="form-control" id="floatingInputEmail" name="email" placeholder="name@example.com" onChange={handleChange} required/>
@@ -63,25 +59,19 @@ const RegisterForm = () => {
                                     <label htmlFor="floatingInputPassword">Password</label>
                                 </div>
 
-                                <div className="form-floating mb-3">
-                                    <input type="password" className="form-control" id="floatingInputPasswordRepeat" name="password_repeat" placeholder="Repeat Password" onChange={handleChange} required/>
-                                    <label htmlFor="floatingInputPasswordRepeat">Repeat Password</label>
-                                </div>
-
                                 <div className="d-grid mb-2">
                                     <button className="btn btn-lg btn-primary btn-login fw-bold text-uppercase text-black bg-blue-400"
-                                    type="submit">Registrovať</button>
+                                    type="submit">Prihlásiť sa</button>
                                 </div>
 
                                 <div className="flex items-center justify-end mt-4">
-                                    {err.length > 0 && (
+                                    {err && (
                                         <ul style={{ color: "red" }}>
-                                        {err.map((error, index) => (
-                                            <li key={index}>{error}</li>
-                                        ))}
+                                            {err.map((error, index) => (
+                                                <li key={index}>{error}</li> 
+                                            ))}
                                         </ul>
                                     )}
-                                    {success && <p style={{ color: "green" }}>{success}</p>}
                                 </div>
 
                                 </form>
@@ -91,7 +81,7 @@ const RegisterForm = () => {
                 </div>
             </div>
         </div>
-      );
+    );
 };
 
-export default RegisterForm;
+export default LoginForm;

@@ -1,6 +1,7 @@
 import express from "express"
 import mongoose from "mongoose";
 import cors from "cors";
+import publicRoutes from "./src/routers/public.router.js";
 
 import { config } from "dotenv";
 
@@ -21,6 +22,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use("/public", publicRoutes);
 
 app.use((error, req, res, next) => {
     if (res.headersSent) {
