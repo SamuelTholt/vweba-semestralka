@@ -1,7 +1,7 @@
 import express from "express"
 import mongoose from "mongoose";
 import cors from "cors";
-import publicRoutes from "./src/routers/public.router.js";
+import publicRoutes from "./src/server/routers/public.router.js";
 
 import { config } from "dotenv";
 

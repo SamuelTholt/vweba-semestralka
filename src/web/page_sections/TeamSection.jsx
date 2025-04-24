@@ -1,11 +1,11 @@
 import TeamItem from "../components/TeamItem";
 import useInViewAnim from "../hooks/useInViewAnimation";
 
-import lukasImg from "../assets/images/lukas.jpg"
-import jozefImg from "../assets/images/jozef.jpg"
+import lukasImg from "../../assets/images/lukas.jpg"
+import jozefImg from "../../assets/images/jozef.jpg"
 
-import karelImg from "../assets/images/karel.jpeg"
-import vladoImg from "../assets/images/vlado.jpg"
+import karelImg from "../../assets/images/karel.jpeg"
+import vladoImg from "../../assets/images/vlado.jpg"
 
 const TeamSection = () => {
     const [ref, isVisible] = useInViewAnim();

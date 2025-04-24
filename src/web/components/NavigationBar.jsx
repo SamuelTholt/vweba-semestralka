@@ -1,4 +1,4 @@
-import logo from "../assets/images/LK_pizza_logo_v2.png";
+import logo from "../../assets/images/LK_pizza_logo_v2.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import NavListBar from "./MenuListNav";

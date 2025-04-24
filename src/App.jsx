@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
-import HomePage from './pages/HomePage'
-import AboutUsPage from './pages/AboutUsPage'
-import ContactPage from './pages/ContactPage';
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
+import HomePage from './web/pages/HomePage'
+import AboutUsPage from './web/pages/AboutUsPage'
+import ContactPage from './web/pages/ContactPage';
+import LoginForm from './web/components/LoginForm';
+import RegisterForm from './web/components/RegisterForm';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 

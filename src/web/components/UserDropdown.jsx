@@ -1,32 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { AuthContext } from "../contexts/AuthContext";
 
 const UserDropdown = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decoded = JSON.parse(atob(token.split(".")[1]));
-        setUser({
-          name: decoded.userName,
-          role: decoded.userRole,
-        });
-      } catch (err) {
-        console.error("Neplatný token");
-      }
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-    navigate("/");
-  };
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <div className="dropdown">
@@ -54,7 +34,7 @@ const UserDropdown = () => {
                 </button>
             </li>
             <li>
-              <button className="dropdown-item" onClick={handleLogout}>
+              <button className="dropdown-item" onClick={logout}>
                 Odhlásiť sa
               </button>
             </li>

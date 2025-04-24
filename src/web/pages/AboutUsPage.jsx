@@ -2,7 +2,7 @@ import NavigationBar from "../components/NavigationBar";
 import HeaderWithImage from "../components/HeaderWithImage";
 import WelcomeSection from "../page_sections/WelcomeSection";
 
-import imageONas from "../assets/images/o_nas.jpg";
+import imageONas from "../../assets/images/o_nas.jpg";
 import TeamSection from "../page_sections/TeamSection";
 
 const AboutUsPage = () => {
