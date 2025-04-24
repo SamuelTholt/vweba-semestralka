@@ -7,12 +7,18 @@ import LoginForm from './web/components/LoginForm';
 import RegisterForm from './web/components/RegisterForm';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import MenuPage from './web/pages/MenuPage';
+import ReviewPage from './web/pages/ReviewPage';
+import PhotoPage from './web/pages/PhotoGalleryPage';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/gallery" element={<PhotoPage />} />
+        <Route path="/reviews" element={<ReviewPage />} />
+        <Route path="/menu" element={<MenuPage />} />
         <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/login" element={<LoginForm />} />

@@ -7,9 +7,9 @@ const NavListBar = () => {
         <div className="menuList">
             <ul className="list">
                 <NavItem to="/" itemIcon={faHome}>Domov</NavItem>
-                <NavItem to="/" itemIcon={faUtensils}>Menu</NavItem>
-                <NavItem to="/" itemIcon={faCamera}>Fotogaléria</NavItem>
-                <NavItem to="/" itemIcon={faStar}>Recenzie</NavItem>
+                <NavItem to="/menu" itemIcon={faUtensils}>Menu</NavItem>
+                <NavItem to="/gallery" itemIcon={faCamera}>Fotogaléria</NavItem>
+                <NavItem to="/reviews" itemIcon={faStar}>Recenzie</NavItem>
                 <NavItem to="/contact" itemIcon={faEnvelope}>Kontakt</NavItem>
                 <NavItem to="/about-us" itemIcon={faInfoCircle}>O nás</NavItem>
                 <UserDropdown/>

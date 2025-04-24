@@ -6,7 +6,7 @@ const TeamSection = () => {
     const [ref, isVisible] = useInViewAnim();
 
     return (
-        <section className="py-5 shapedividers_com-5733"
+        <section className="py-5 shapedivider-opacity-wave"
         style={{ backgroundColor:"#3A4F50" }}>
         <div ref={ref} 
         className={`container my-5 whiteColor ${isVisible ? "grow-animation" : "hidden"}`}>
