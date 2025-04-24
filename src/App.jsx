@@ -10,6 +10,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import MenuPage from './web/pages/MenuPage';
 import ReviewPage from './web/pages/ReviewPage';
 import PhotoPage from './web/pages/PhotoGalleryPage';
+import ProtectedRoute from './web/components/ProtectedRoute';
 
 function App() {
   return (
@@ -17,7 +18,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/gallery" element={<PhotoPage />} />
-        <Route path="/reviews" element={<ReviewPage />} />
+        <Route path='/reviews'
+         element={ <ProtectedRoute> <ReviewPage/> </ProtectedRoute>}>
+
+        </Route>
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/contact" element={<ContactPage />} />

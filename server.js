@@ -2,8 +2,14 @@ import express from "express"
 import mongoose from "mongoose";
 import cors from "cors";
 import publicRoutes from "./src/server/routers/public.router.js";
+import reviewsRoutes from "./src/server/routers/reviews.router.js"
 
 import { config } from "dotenv";
+import authMiddleware from "./src/server/middleware/auth.middleware.js";
+
+
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 config();
 
@@ -22,7 +28,24 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*"); // allow all domains
+    res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, x-access-token");
+    next();
+});
+
+// Získanie adresára, kde sa nachádza súbor
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Nastavenie statického adresára pre obrázky
+app.use("/images", express.static(join(__dirname, "public", "images")));
+
+
+app.use(authMiddleware);
 app.use("/public", publicRoutes);
+app.use("/reviews", reviewsRoutes);
 
 app.use((error, req, res, next) => {
     if (res.headersSent) {
