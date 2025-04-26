@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     if (storedToken) {
       try {
         const decoded = JSON.parse(atob(storedToken.split(".")[1]));
-        setUser({ name: decoded.userName, role: decoded.userRole });
+        setUser({ id: decoded.userId ,name: decoded.userName, role: decoded.userRole });
         setToken(storedToken);
       } catch {
         localStorage.removeItem("token");
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   const login = (newToken) => {
     localStorage.setItem("token", newToken);
     const decoded = JSON.parse(atob(newToken.split(".")[1]));
-    setUser({ name: decoded.userName, role: decoded.userRole });
+    setUser({ id: decoded.userId ,name: decoded.userName, role: decoded.userRole });
     setToken(newToken);
   };
 

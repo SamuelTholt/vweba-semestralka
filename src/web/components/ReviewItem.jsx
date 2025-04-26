@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import ImageModal from "./modals/ImageModal";
+import EditReviewModal from "./modals/EditReviewModal";
+import { AuthContext } from "../contexts/AuthContext";
+
 
 const ReviewItem = ({
     _id,
@@ -12,8 +15,9 @@ const ReviewItem = ({
     images,
     createdAt,
 }) => {
-    console.log(_id, pridal_user_id);
+    const { user } = useContext(AuthContext); // získame prihláseného usera
     const [modalImage, setModalImage] = useState(null);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     const openModal = (imageUrl) => {
         setModalImage(imageUrl);
@@ -23,6 +27,7 @@ const ReviewItem = ({
         setModalImage(null);
     };
 
+    const isOwner = user && user.id === pridal_user_id;
     return (
         <div className="container review-container">
             <div className="card">
@@ -61,11 +66,37 @@ const ReviewItem = ({
                                 </div>
                             )}
 
-                            {/* Modal */}
+                            {/* Modal na obrázok */}
                             {modalImage && (
                                 <ImageModal modalImage={modalImage} closeModal={closeModal} />
                             )}
 
+                            {/* Tlačidlo "Upraviť recenziu" - zobrazí sa len autorovi */}
+                            {isOwner && (
+                                <>
+                                    <button 
+                                        onClick={() => setIsEditModalOpen(true)} 
+                                        className="btn btn-primary btn-sm mt-2"
+                                    >
+                                        Upraviť recenziu
+                                    </button>
+
+                                    <EditReviewModal
+                                        isOpen={isEditModalOpen}
+                                        onRequestClose={() => setIsEditModalOpen(false)}
+                                        review={{
+                                            _id,
+                                            comment,
+                                            star_rating,
+                                            images,
+                                            pridal_user,
+                                            pridal_user_id,
+                                            createdAt,
+                                        }}
+                                    />
+
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

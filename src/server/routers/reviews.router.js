@@ -6,5 +6,6 @@ const router = express.Router();
 router.get("/", reviewsController.getReviews);
 router.get("/myReviews", reviewsController.getReviewsByUserId);
 router.post("/create", reviewsController.createReview);
+router.put("/edit/:id", reviewsController.editReview);
 
 export default router;
