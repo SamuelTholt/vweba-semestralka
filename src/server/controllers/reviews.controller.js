@@ -122,9 +122,7 @@ const editReview = [
       try {
         const reviewId = req.params.id;
         const { comment, star_rating } = req.body;
-        
-        // Handle the imagesToDelete array properly
-        // It might come as a single string or an array of strings
+    
         let imagesToDelete = req.body.imagesToDelete || [];
         if (!Array.isArray(imagesToDelete)) {
           imagesToDelete = [imagesToDelete];
@@ -132,28 +130,27 @@ const editReview = [
         
         console.log("Images to delete:", imagesToDelete);
   
-        // Check if review exists
         const existingReview = await review.findById(reviewId);
         if (!existingReview) {
           return res.status(404).json({ error: "Recenzia sa nenašla!" });
         }
-  
-        // Check if user is the owner of the review
-        if (existingReview.pridal_user_id.toString() !== req.user.userId) {
+
+        const isOwner = existingReview.pridal_user_id.toString() === req.user.userId;
+        const isAdmin = req.user.userRole === "admin";
+        
+        if (!isOwner && !isAdmin) {
           return res.status(403).json({ error: "Nemáte oprávnenie upravovať túto recenziu!" });
         }
   
-        // Filter out images that should be deleted
         let updatedImages = existingReview.images.filter(
           imgPath => !imagesToDelete.includes(imgPath)
         );
         
         console.log("Updated images after filtering:", updatedImages);
   
-        // Delete physical files for images marked for deletion
+
         for (const imgPath of imagesToDelete) {
           try {
-            // Make sure the path is relative to the server root
             const fullPath = path.join(process.cwd(), imgPath);
             console.log("Attempting to delete file:", fullPath);
             
@@ -165,11 +162,9 @@ const editReview = [
             }
           } catch (err) {
             console.error("Error deleting file:", err);
-            // Continue with the rest of the process even if one file deletion fails
           }
         }
   
-        // Add new uploaded images
         if (req.files && req.files.length > 0) {
           const newImagePaths = req.files.map(file => file.path);
           updatedImages = [...updatedImages, ...newImagePaths];
@@ -177,9 +172,7 @@ const editReview = [
         
         console.log("Final updated images:", updatedImages);
   
-        // Check if total images don't exceed the limit
         if (updatedImages.length > 5) {
-          // Clean up newly uploaded files if exceeding limit
           if (req.files && req.files.length > 0) {
             req.files.forEach(file => {
               fs.unlinkSync(file.path);
@@ -188,7 +181,6 @@ const editReview = [
           return res.status(400).json({ error: "Maximálny počet obrázkov je 5!" });
         }
   
-        // Update the review
         const updatedReview = await review.findByIdAndUpdate(
           reviewId,
           {
@@ -209,32 +201,65 @@ const editReview = [
 
 const deleteReview = async (req, res) => {
     try {
-      const reviewId = req.params.id;
-      
-      const existingReview = await review.findById(reviewId);
-      if (!existingReview) {
-        return res.status(404).json({ error: "Recenzia sa nenašla!" });
-      }
-  
-      if (existingReview.pridal_user_id.toString() !== req.user.userId) {
-        return res.status(403).json({ error: "Nemáte oprávnenie vymazať túto recenziu!" });
-      }
-  
-      if (existingReview.images && existingReview.images.length > 0) {
-        existingReview.images.forEach(imagePath => {
-          const fullPath = path.join(__dirname, '..', imagePath);
-          if (fs.existsSync(fullPath)) {
-            fs.unlinkSync(fullPath);
-          }
-        });
-      }
-  
-      await review.findByIdAndDelete(reviewId);
-      
-      res.json({ message: "Recenzia bola úspešne vymazaná!" });
+        const reviewId = req.params.id;
+        
+        const existingReview = await review.findById(reviewId);
+        if (!existingReview) {
+            return res.status(404).json({ error: "Recenzia sa nenašla!" });
+        }
+    
+        const isOwner = existingReview.pridal_user_id.toString() === req.user.userId;
+        const isAdmin = req.user.userRole === "admin";
+            
+        if (!isOwner && !isAdmin) {
+         return res.status(403).json({ error: "Nemáte oprávnenie vymazať túto recenziu!" });
+        }
+    
+        if (existingReview.images && existingReview.images.length > 0) {
+            existingReview.images.forEach(imagePath => {
+            const fullPath = path.join(__dirname, '..', imagePath);
+            if (fs.existsSync(fullPath)) {
+                fs.unlinkSync(fullPath);
+            }
+            });
+        }
+    
+        await review.findByIdAndDelete(reviewId);
+        
+        res.json({ message: "Recenzia bola úspešne vymazaná!" });
     } catch (error) {
-      console.error("Error deleting review:", error);
-      res.status(500).json({ error: "Niečo sa pokazilo pri mazaní recenzie!" });
+        console.error("Error deleting review:", error);
+        res.status(500).json({ error: "Niečo sa pokazilo pri mazaní recenzie!" });
+    }
+};
+
+const getReviewStats = async (req, res) => {
+    try {
+        const ratingCounts = await review.aggregate([
+            { $group: { _id: "$star_rating", count: { $sum: 1 } } },
+            { $sort: { _id: 1 } }
+        ]);
+        
+        const averageResult = await review.aggregate([
+            { $group: { _id: null, average: { $avg: "$star_rating" } } }
+        ]);
+        
+        const stats = {
+            totalReviews: await review.countDocuments(),
+            ratingCounts: {
+                1: 0, 2: 0, 3: 0, 4: 0, 5: 0
+            },
+            averageRating: averageResult.length > 0 ? parseFloat(averageResult[0].average.toFixed(1)) : 0
+        };
+        
+        ratingCounts.forEach(rating => {
+            stats.ratingCounts[rating._id] = rating.count;
+        });
+        
+        res.json(stats);
+    } catch (error) {
+        console.error("Error getting review stats:", error);
+        res.status(500).json({ error: "Niečo sa pokazilo pri načítavaní štatistík recenzií!" });
     }
 };
 
@@ -243,5 +268,6 @@ export default {
     getReviewsByUserId,
     createReview,
     editReview,
-    deleteReview
+    deleteReview,
+    getReviewStats
 };

@@ -1,0 +1,204 @@
+[{
+  "_id": {
+    "$oid": "680d3c1d9aaa515aabc0ed31"
+  },
+  "name": "Samuel Tholt",
+  "email": "samuel.tholt@example.com",
+  "role": "user",
+  "salt": "f1c83bc6c1eaa7ac30f024c012634712",
+  "password": "9de6afb2e99d4f583ebbf5c4e516b54502e9c0f7a18e9434e0c7231ab28145c48693095dcd83ffd7848fca320c0e2311c4121c4626cd0e3f9fee177f291ba5a2",
+  "createdAt": {
+    "$date": "2025-04-26T20:03:41.743Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:03:41.743Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3e959aaa515aabc0ed46"
+  },
+  "name": "Anna Novakova",
+  "email": "anna.novakova@example.com",
+  "role": "user",
+  "salt": "25fa1b042ad5aac3f95f6cefd852c82f",
+  "password": "6d44cfd78f4153aa35a8ddddaa971c7cbe7ac2358e191358ad0c93fa0e958eda6d312f3f1f3f498eab508c12810389624737bf44c32fe1cb528e1f61516909cc",
+  "createdAt": {
+    "$date": "2025-04-26T20:14:13.062Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:14:13.062Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3ec99aaa515aabc0ed49"
+  },
+  "name": "Jakub Horvath",
+  "email": "jakub.horvath@example.com",
+  "role": "user",
+  "salt": "6d6fbbc4c0e927cd84988c5231a33561",
+  "password": "6f68ebd53390b22cd920315d7cd5ba31b771d891c2e4fe43047e65d73e786d867f049d83d443ae8b83da9251aae140725ca6f34163dbbefa8e47a1d75a80c9d6",
+  "createdAt": {
+    "$date": "2025-04-26T20:15:05.810Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:15:05.810Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3ed39aaa515aabc0ed4c"
+  },
+  "name": "Michaela Cierna",
+  "email": "michaela.cierna@example.com",
+  "role": "user",
+  "salt": "cfd19fbf25fce669756aaf51aad22937",
+  "password": "c0beb2bbf4c40ab20b4faa4f84f6051cbbe4019e96f66cd3802565642f54205831bbc996f24d9c3dce99681f779fecaaab58289134ee3ad8f971560da098ccae",
+  "createdAt": {
+    "$date": "2025-04-26T20:15:15.665Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:15:15.665Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3edd9aaa515aabc0ed4f"
+  },
+  "name": "Peter Kovac",
+  "email": "peter.kovac@example.com",
+  "role": "user",
+  "salt": "13938055b17fdb894c933f1cfaba7585",
+  "password": "4e4ad0e96ead6e3dec22c25e4f179e4580a338928aecc8a1a1a5e7da90c4b2e01d013a032cef8338b7f158995a5296d7d90b8f031f103b1492ea9888846f8475",
+  "createdAt": {
+    "$date": "2025-04-26T20:15:25.650Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:15:25.650Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3eea9aaa515aabc0ed52"
+  },
+  "name": "Lucia Bielikova",
+  "email": "lucia.bielikova@example.com",
+  "role": "user",
+  "salt": "394d7b614ab7177b1d937cd28ed2d939",
+  "password": "16f84d416217716bb28bfd0b06fb3c0ea568cc6e4dce53d741cc0709c08d07064d9ce084c57785b1db27a1d894c87c2f1d53e61132265de32b4c3c8ba81a47be",
+  "createdAt": {
+    "$date": "2025-04-26T20:15:38.873Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:15:38.873Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3ef59aaa515aabc0ed55"
+  },
+  "name": "Martin Dvorak",
+  "email": "martin.dvorak@example.com",
+  "role": "user",
+  "salt": "da4255f1a902830b3a888b94cffd031a",
+  "password": "2b48f0cbf0a0c1fb5f137b6bcad03d56e6bee5c6664db68e3c24554f0d47d88b00791f4344a13e3227abbfec08acbaabb126a33b959ec085a6943fa8e18a1976",
+  "createdAt": {
+    "$date": "2025-04-26T20:15:49.831Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:15:49.831Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3f009aaa515aabc0ed58"
+  },
+  "name": "Kristina Svecova",
+  "email": "kristina.svecova@example.com",
+  "role": "user",
+  "salt": "390b97f3798efcec8fba98e6464dcbb2",
+  "password": "ddc30ec3670b7ac2b73db54e01c323ebd5c7dc9b33eb91c2e5c83db3a74fb3ccabff8a302150c67ba88d4c516b82900375ea5296d5247c9461932ca9bfbbff4a",
+  "createdAt": {
+    "$date": "2025-04-26T20:16:00.817Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:16:00.817Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3f089aaa515aabc0ed5b"
+  },
+  "name": "Tomas Urban",
+  "email": "tomas.urban@example.com",
+  "role": "user",
+  "salt": "70ce72b26e5d7606b0703b6a96fc0b0d",
+  "password": "20bcf963811abd53df2358f1d0bd11d5afca8dccc8d0ff36edf24902be5d14dde8141e37d524226124890b9504ad5b8822153696ce6bd80557e636b5a6c27c49",
+  "createdAt": {
+    "$date": "2025-04-26T20:16:08.166Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:16:08.166Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3f0e9aaa515aabc0ed5e"
+  },
+  "name": "Barbora Polakova",
+  "email": "barbora.polakova@example.com",
+  "role": "user",
+  "salt": "ae7c4c65c6a2ddf380aa880dabfd64d4",
+  "password": "c3d5a9ccaf3bc987110d40f5456b7a33a693ce403f84012e6c6ac1fb87dc15d298f67a2ce857eaa9aeaaa59b09c41205fc5b8c39f9bbbdf5e3f8b625edec2d15",
+  "createdAt": {
+    "$date": "2025-04-26T20:16:14.085Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:16:14.085Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3f189aaa515aabc0ed61"
+  },
+  "name": "Dominik Kral",
+  "email": "dominik.kral@example.com",
+  "role": "user",
+  "salt": "953134d2b75e407f72849d4ff165d7dc",
+  "password": "162333abd3ac9fb64fade144285f563ddf76d2408d8a007a90da04aa2c38c212ea6cc2e612ecaf041862db4abab84191a09d21d84a185d9d508cfbc41875a01a",
+  "createdAt": {
+    "$date": "2025-04-26T20:16:24.239Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:16:24.239Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d42609aaa515aabc0eda6"
+  },
+  "name": "LKPizzeriaAdmin",
+  "email": "lkpizzeria@gmail.com",
+  "role": "admin",
+  "salt": "d54935de7860180b0ff734bdf5a1d69a",
+  "password": "dfc0128767435de07b2841116da6eefaa8af28857b07bfdaada05536e1fdd1d5c0ca6530bfeabd185d2e74a2a0d6f3569c9c2f5db7eb2141b3847e4da7f4e0ca",
+  "createdAt": {
+    "$date": "2025-04-26T20:30:24.118Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:30:24.118Z"
+  },
+  "__v": 0
+}]

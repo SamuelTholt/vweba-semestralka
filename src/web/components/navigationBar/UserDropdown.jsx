@@ -29,11 +29,6 @@ const UserDropdown = () => {
         {user ? (
           <>
             <li>
-                <button className="dropdown-item" onClick={() => navigate("/profile")}>
-                    Profil
-                </button>
-            </li>
-            <li>
               <button className="dropdown-item" onClick={logout}>
                 Odhlásiť sa
               </button>

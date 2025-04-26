@@ -1,0 +1,123 @@
+[{
+  "_id": {
+    "$oid": "680d3c5e9aaa515aabc0ed38"
+  },
+  "comment": "Perfektná služba, určite odporúčam!",
+  "star_rating": 5,
+  "pridal_user": "Samuel Tholt",
+  "pridal_user_id": {
+    "$oid": "680d3c1d9aaa515aabc0ed31"
+  },
+  "images": [
+    "public\\images\\7923fa29-4bef-406d-a010-4c9f6d0dbc3f-1745697886250.jpg",
+    "public\\images\\415888c8-e462-438e-adeb-7f1b60f5cf38-1745697886252.jpg"
+  ],
+  "createdAt": {
+    "$date": "2024-01-22T10:04:46.256Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:04:46.256Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3ce99aaa515aabc0ed3e"
+  },
+  "comment": "Bol som tu znova a stále sú lepší a lepší a som rád, že stále sa držia :D",
+  "star_rating": 5,
+  "pridal_user": "Samuel Tholt",
+  "pridal_user_id": {
+    "$oid": "680d3c1d9aaa515aabc0ed31"
+  },
+  "images": [],
+  "createdAt": {
+    "$date": "2025-04-26T20:07:05.389Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-26T20:07:05.389Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3f8a9aaa515aabc0ed68"
+  },
+  "comment": "Milý personál a rýchla obsluha.",
+  "star_rating": 5,
+  "pridal_user": "Anna Novakova",
+  "pridal_user_id": {
+    "$oid": "680d3e959aaa515aabc0ed46"
+  },
+  "images": [
+    "public\\images\\3e64fcea-fca7-49dd-a896-298cc4e9e8ac-1745698698490.jpg"
+  ],
+  "createdAt": {
+    "$date": "2025-01-26T19:18:18.541Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-26T19:18:18.541Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3fe79aaa515aabc0ed71"
+  },
+  "comment": "Bolo to fajn, ale trochu drahé.",
+  "star_rating": 4,
+  "pridal_user": "Jakub Horvath",
+  "pridal_user_id": {
+    "$oid": "680d3ec99aaa515aabc0ed49"
+  },
+  "images": [],
+  "createdAt": {
+    "$date": "2024-12-26T12:58:18.541Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-26T12:58:18.541Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d40569aaa515aabc0ed7a"
+  },
+  "comment": "Veľmi príjemná skúsenosť, rada sa vrátim.\"",
+  "star_rating": 4,
+  "pridal_user": "Michaela Cierna",
+  "pridal_user_id": {
+    "$oid": "680d3ed39aaa515aabc0ed4c"
+  },
+  "images": [
+    "public\\images\\9eae6ddb-f22d-4592-bbd4-c28f06a46fd5-1745698902933.jpg"
+  ],
+  "createdAt": {
+    "$date": "2025-03-26T17:21:42.942Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-26T17:21:42.942Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d40aa9aaa515aabc0ed87"
+  },
+  "comment": "Skvelá kvalita za super cenu.",
+  "star_rating": 5,
+  "pridal_user": "Tomas Urban",
+  "pridal_user_id": {
+    "$oid": "680d3f089aaa515aabc0ed5b"
+  },
+  "images": [
+    "public\\images\\695b12ea-d5f6-4bf9-a3ec-43bcf48eb744-1745698986202.jpg"
+  ],
+  "createdAt": {
+    "$date": "2024-11-26T20:23:06.203Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-26T20:23:06.203Z"
+  },
+  "__v": 0
+}]

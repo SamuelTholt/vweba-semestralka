@@ -5,6 +5,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import ReviewStats from "../components/ReviewStats";
 
 
 const ReviewSection = () => {
@@ -14,6 +15,24 @@ const ReviewSection = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [sortOrder, setSortOrder] = useState("desc");
     const [showMyReviews, setShowMyReviews] = useState(false);
+    const [hasUserReviews, setHasUserReviews] = useState(false);
+
+    const checkUserReviews = async () => {
+        if (!token) return;
+        
+        try {
+            const response = await axios.get(`http://localhost:5000/reviews/myReviews?page=1&limit=1`, {
+                headers: {
+                    "x-access-token": token,
+                }
+            });
+            
+            setHasUserReviews(response.data.totalPages > 0);
+        } catch (error) {
+            console.error("Chyba pri kontrole používateľských recenzií:", error);
+            setHasUserReviews(false);
+        }
+    };
 
     const fetchReviews = async (page) => {
         try {
@@ -45,6 +64,7 @@ const ReviewSection = () => {
     useEffect(() => {
         if (token) {
             fetchReviews(currentPage);
+            checkUserReviews();
         }
     }, [currentPage, token, sortOrder, showMyReviews]);
 
@@ -73,15 +93,19 @@ const ReviewSection = () => {
             <div className="container my-5 whiteColor">
                 <div className="row justify-content-center">
                     <div className="col-lg-8">
+                        <ReviewStats />
                         <h2 className="text-center mb-4">Napísali o nás</h2>
-
                         <div className="d-flex justify-content-center gap-2 mb-4">
                             <button className="btn btn-secondary" onClick={toggleSortOrder}>
                                 {sortOrder === "asc" ? "Najstaršie prvé" : "Najnovšie prvé"}
                             </button>
-                            <button className="btn btn-info" onClick={toggleShowMyReviews}>
-                                {showMyReviews ? "Zobraziť všetky recenzie" : "Zobraziť moje recenzie"}
-                            </button>
+
+
+                             {token && hasUserReviews && (
+                                <button className="btn btn-info" onClick={toggleShowMyReviews}>
+                                    {showMyReviews ? "Zobraziť všetky recenzie" : "Zobraziť moje recenzie"}
+                                </button>
+                            )}
                         </div>
 
                         <div className="reviews-container">

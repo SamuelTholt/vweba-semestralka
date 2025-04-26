@@ -1,0 +1,68 @@
+[
+   {
+    "name": "LKPizzeriaAdmin",
+    "email": "LKPizzeria@gmail.com",
+    "password": "adminLK123",
+    "password_repeat": "adminLK123"
+  }
+  {
+    "name": "Anna Novakova",
+    "email": "anna.novakova@example.com",
+    "password": "Password123",
+    "password_repeat": "Password123"
+  },
+  {
+    "name": "Jakub Horvath",
+    "email": "jakub.horvath@example.com",
+    "password": "Secure456",
+    "password_repeat": "Secure456"
+  },
+  {
+    "name": "Michaela Cierna",
+    "email": "michaela.cierna@example.com",
+    "password": "Miska789",
+    "password_repeat": "Miska789"
+  },
+  {
+    "name": "Peter Kovac",
+    "email": "peter.kovac@example.com",
+    "password": "Peter1234",
+    "password_repeat": "Peter1234"
+  },
+  {
+    "name": "Lucia Bielikova",
+    "email": "lucia.bielikova@example.com",
+    "password": "LuciaPass1",
+    "password_repeat": "LuciaPass1"
+  },
+  {
+    "name": "Martin Dvorak",
+    "email": "martin.dvorak@example.com",
+    "password": "Martin456",
+    "password_repeat": "Martin456"
+  },
+  {
+    "name": "Kristina Svecova",
+    "email": "kristina.svecova@example.com",
+    "password": "Kristina1",
+    "password_repeat": "Kristina1"
+  },
+  {
+    "name": "Tomas Urban",
+    "email": "tomas.urban@example.com",
+    "password": "UrbanPass9",
+    "password_repeat": "UrbanPass9"
+  },
+  {
+    "name": "Barbora Polakova",
+    "email": "barbora.polakova@example.com",
+    "password": "Barbora321",
+    "password_repeat": "Barbora321"
+  },
+  {
+    "name": "Dominik Kral",
+    "email": "dominik.kral@example.com",
+    "password": "Domino987",
+    "password_repeat": "Domino987"
+  }
+]

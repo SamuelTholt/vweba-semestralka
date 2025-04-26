@@ -53,7 +53,7 @@ const ReviewItem = ({
         }
     };
 
-    const isOwner = user && user.id === pridal_user_id;
+    const isOwner = user && user.id === pridal_user_id || user.role == "admin";
     return (
         <div className="container review-container">
             <div className="card">

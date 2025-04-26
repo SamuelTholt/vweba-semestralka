@@ -5,7 +5,8 @@ const authMiddleware = async (req, res, next) => {
   if (
     req.url.startsWith("/public") ||
     req.method === "OPTIONS" ||
-    req.url.startsWith("/images")
+    req.url.startsWith("/images") ||
+    req.url.startsWith("/menu")
   ) {
     return next();
   }
