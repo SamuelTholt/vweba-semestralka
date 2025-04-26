@@ -2,17 +2,21 @@ import multer from "multer";
 import { v4 as uuidv4 } from 'uuid';
 import fs from "fs";
 import path from "path";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        let folderPath = "../../../public/assets/images";
-
+        let folderPath = path.resolve(__dirname, "..", "public", "assets", "images");
+    
         if (req.baseUrl.includes("/reviews")) {
-        folderPath = "../../../public/assets/reviewImages";
+            folderPath = path.resolve(__dirname, "..", "public", "assets", "reviewImages");
         } else if (req.baseUrl.includes("/gallery")) {
-        folderPath = "./public/assets/galleryImages";
+            folderPath = path.resolve(__dirname, "..", "public", "assets", "galleryImages");
         }
-
+    
         fs.mkdirSync(folderPath, { recursive: true });
         cb(null, folderPath);
     },

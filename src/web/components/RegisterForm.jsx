@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../contexts/AuthContext";
 
 const RegisterForm = () => {
+    const { login } = useContext(AuthContext);
     const [formRegisterData, setFormRegisterData] = useState({
         name: "",
         email: "",
@@ -22,8 +24,16 @@ const RegisterForm = () => {
         setSuccess("");
 
         try {
-            const resData = await axios.post("http://localhost:5000/public/signUp", formRegisterData);
+            await axios.post("http://localhost:5000/public/signUp", formRegisterData);
             //console.log(resData.data);
+            const loginData = {
+                email: formRegisterData.email,
+                password: formRegisterData.password,
+            };
+
+            const resData = await axios.post("http://localhost:5000/public/signIn", loginData);
+            const token = resData.data.token;
+            login(token);
             setSuccess("Registracia bola úspešná!");
             window.location.href = "/";
         } catch (error) {

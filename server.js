@@ -9,7 +9,8 @@ import authMiddleware from "./src/server/middleware/auth.middleware.js";
 
 
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { dirname } from 'path';
+import path from "path";
 
 config();
 
@@ -39,8 +40,7 @@ app.use((req, res, next) => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Nastavenie statického adresára pre obrázky
-app.use("/images", express.static(join(__dirname, "public", "images")));
+app.use("/reviewImages", express.static(path.join(__dirname, "public", "assets", "reviewImages")));
 
 
 app.use(authMiddleware);

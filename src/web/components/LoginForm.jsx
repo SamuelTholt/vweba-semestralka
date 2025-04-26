@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../contexts/AuthContext";
 
 const LoginForm = () => {
+    const { login } = useContext(AuthContext);
     const [formLoginData, setFormLoginData] = useState({
         email: "",
         password: ""
@@ -21,8 +23,9 @@ const LoginForm = () => {
 
         try {
             const resData = await axios.post("http://localhost:5000/public/signIn", formLoginData);
-            console.log(resData.data);
-            localStorage.setItem("token", resData.data.token);
+            //console.log(resData.data);
+            const token = resData.data.token;
+            login(token);
             setSuccess("Prihlásenie bolo úspešné!");
             window.location.href = "/";
         } catch (error) {
@@ -71,6 +74,11 @@ const LoginForm = () => {
                                                 <li key={index}>{error}</li> 
                                             ))}
                                         </ul>
+                                    )}
+                                    {success && (
+                                        <div style={{ color: "green" }}>
+                                            {success}
+                                        </div>
                                     )}
                                 </div>
 

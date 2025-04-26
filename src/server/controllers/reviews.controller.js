@@ -39,7 +39,7 @@ const createReview = [
             });
 
             await newReview.save();
-            res.status(201).json(newQuest);
+            res.status(201).json(newReview);
         } catch (error) {
             res.status(500).json({ error: "Niečo sa pokazilo a nepridala sa recenzia!" });
         }
