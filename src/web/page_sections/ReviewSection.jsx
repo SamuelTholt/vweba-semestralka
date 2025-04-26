@@ -8,7 +8,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 
 const ReviewSection = () => {
-    const { token, user } = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -17,21 +17,29 @@ const ReviewSection = () => {
 
     const fetchReviews = async (page) => {
         try {
-            let url = `http://localhost:5000/reviews?page=${page}&limit=4&sort=${sortOrder}`;
-            if (showMyReviews && user?.userId) {
-                url += `&userId=${user.userId}`;
-            }
-            const response = await axios.get(url, {
+            const sortQuery = `&sort=${sortOrder}`;
+            const endpoint = showMyReviews 
+                ? `http://localhost:5000/reviews/myReviews?page=${page}&limit=4${sortQuery}`
+                : `http://localhost:5000/reviews?page=${page}&limit=4${sortQuery}`;
+    
+            const response = await axios.get(endpoint, {
                 headers: {
                     "x-access-token": token,
                 }
             });
-            setReviews(response.data.reviews);
-            setTotalPages(response.data.totalPages);
-            setCurrentPage(response.data.currentPage);
+    
+            if (showMyReviews) {
+                setReviews(response.data.reviews);
+                setTotalPages(response.data.totalPages);
+                setCurrentPage(response.data.currentPage);
+            } else {
+                setReviews(response.data.reviews);
+                setTotalPages(response.data.totalPages);
+                setCurrentPage(response.data.currentPage);
+            }
         } catch (error) {
             console.error("Chyba pri načítavaní recenzií:", error);
-        }
+        } 
     };
 
     useEffect(() => {

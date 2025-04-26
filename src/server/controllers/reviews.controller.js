@@ -34,6 +34,35 @@ const getReviews = async (req, res) => {
     }
 };
 
+const getReviewsByUserId = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 4;
+        const skip = (page - 1) * limit;
+        const sortOrder = req.query.sort === "asc" ? 1 : -1;
+        const userId = req.user.userId;
+
+        
+        const reviews = await review.find({ pridal_user_id: userId })
+            .sort({ createdAt: sortOrder })
+            .skip(skip)
+            .limit(limit);
+
+        const totalReviews = await review.countDocuments({ pridal_user_id: userId });
+        const totalPages = Math.ceil(totalReviews / limit);
+
+        res.json({
+            reviews,
+            totalPages,
+            currentPage: page
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Chyba pri načítavaní recenzií používateľa." });
+    }
+};
+
+
 
 const createReview = [
     upload.array("images", 5),
@@ -74,5 +103,6 @@ const createReview = [
 
 export default {
     getReviews,
+    getReviewsByUserId,
     createReview
 };

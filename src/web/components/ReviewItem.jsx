@@ -39,7 +39,7 @@ const ReviewItem = ({
                             </p>
                             <div className="clearfix"></div>
                             <p>{comment}</p>
-                            <p><p>{new Date(createdAt).toLocaleString()}</p></p>
+                            <p>{new Date(createdAt).toLocaleString()}</p>
 
                             {images && images.length > 0 && (
                                 <div className="review-images text-center mt-3">
