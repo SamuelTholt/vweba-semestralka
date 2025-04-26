@@ -7,10 +7,33 @@ import { fileFilter, storage } from "../utils/FileUpload.js"
 
 let upload = multer({ storage, fileFilter, limits: { fileSize:"10MB" } });
 
-const getReviews = async(req, res) => {
-    const allReviews = await review.find();
-    res.json(allReviews);
-}
+const getReviews = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 4;
+        const skip = (page - 1) * limit;
+        const sort = req.query.sort === "asc" ? 1 : -1;
+        const userId = req.query.userId;
+
+        const query = userId ? { pridal_user_id: userId } : {};
+
+        const reviews = await review.find(query)
+            .sort({ createdAt: sort })
+            .skip(skip)
+            .limit(limit);
+
+        const totalReviews = await review.countDocuments(query);
+
+        res.json({
+            reviews,
+            totalPages: Math.ceil(totalReviews / limit),
+            currentPage: page,
+        });
+    } catch (error) {
+        res.status(500).json({ error: "Niečo sa pokazilo pri načítavaní recenzií!" });
+    }
+};
+
 
 const createReview = [
     upload.array("images", 5),
@@ -22,12 +45,15 @@ const createReview = [
             console.log("Validation errors:", errors.array());
             return res.status(400).json({ errors: errors.array() });
         }
-
         const { comment, star_rating } = req.body;
 
-        const imagePaths = req.files?.map((file) =>
-            file.path.replace(/^.*?public[\\/]/, "")
-          ) || [];
+        let imagePaths = [];
+
+        if (req.files && req.files.length > 0) {
+            imagePaths = req.files.map((file) => {
+                return file.path.substr(file.path.indexOf("/") + 1);
+            });
+        }
 
         try {
             const newReview = new review({
@@ -35,7 +61,7 @@ const createReview = [
                 star_rating,
                 pridal_user: req.user.userName,
                 pridal_user_id: req.user.userId,
-                images: imagePaths
+                images: imagePaths.length > 0 ? imagePaths : []
             });
 
             await newReview.save();

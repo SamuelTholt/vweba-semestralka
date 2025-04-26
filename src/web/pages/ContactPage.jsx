@@ -1,4 +1,4 @@
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../components/navigationBar/NavigationBar";
 import HeaderWithImage from "../components/HeaderWithImage";
 import imageContact from "../../assets/images/contact-banner-2.jpg"
 import ContactSection from "../page_sections/ContactSection";

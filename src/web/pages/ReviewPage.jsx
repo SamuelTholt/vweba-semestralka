@@ -1,7 +1,8 @@
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../components/navigationBar/NavigationBar";
 import HeaderWithImage from "../components/HeaderWithImage";
 import imageReview from "../../assets/images/rating.jpg"
 import AddReviewSection from "../page_sections/ButtonAddReviewSection";
+import ReviewSection from "../page_sections/ReviewSection";
 
 
 const ReviewPage = () => {
@@ -14,6 +15,7 @@ const ReviewPage = () => {
                 shapeDivider="shapedivider-mutliple_waves"
             />
             <AddReviewSection/>
+            <ReviewSection/>
         </div>
     );
 }

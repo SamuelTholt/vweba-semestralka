@@ -1,4 +1,4 @@
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../components/navigationBar/NavigationBar";
 import HeaderWithImage from "../components/HeaderWithImage";
 import imageMenu from "../../assets/images/menu.jpg"
 

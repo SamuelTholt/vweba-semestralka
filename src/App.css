@@ -141,6 +141,68 @@ html {
   overflow-y: auto;
 }
 
+.review-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.review-image-thumbnail {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  background-color: black;
+  border-radius: 10px;
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.review-image-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modal-image {
+  max-width: 90vw; /* maximálne 90% šírky okna */
+  max-height: 90vh; /* maximálne 90% výšky okna */
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.modal-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: red;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+  box-shadow: 0 0 5px black;
+}
 
 label {
   display: block;
