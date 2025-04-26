@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ImageModal from "./modals/ImageModal";
 import EditReviewModal from "./modals/EditReviewModal";
 import { AuthContext } from "../contexts/AuthContext";
+import axios from "axios";
 
 
 const ReviewItem = ({
@@ -14,10 +15,12 @@ const ReviewItem = ({
     pridal_user_id,
     images,
     createdAt,
+    onReviewDeleted
 }) => {
-    const { user } = useContext(AuthContext); // získame prihláseného usera
+    const { user, token } = useContext(AuthContext);
     const [modalImage, setModalImage] = useState(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const openModal = (imageUrl) => {
         setModalImage(imageUrl);
@@ -25,6 +28,29 @@ const ReviewItem = ({
 
     const closeModal = () => {
         setModalImage(null);
+    };
+
+    const handleDeleteReview = async () => {
+        if (window.confirm("Skutočne chcete vymazať túto recenziu?")) {
+            setIsDeleting(true);
+            try {
+                await axios.delete(`http://localhost:5000/reviews/delete/${_id}`, {
+                    headers: {
+                        "x-access-token": token,
+                    }
+                });
+                if (onReviewDeleted) {
+                    onReviewDeleted(_id);
+                } else {
+                    window.location.reload();
+                }
+            } catch (error) {
+                console.error("Error deleting review:", error);
+                alert("Nepodarilo sa vymazať recenziu.");
+            } finally {
+                setIsDeleting(false);
+            }
+        }
     };
 
     const isOwner = user && user.id === pridal_user_id;
@@ -73,12 +99,23 @@ const ReviewItem = ({
 
                             {/* Tlačidlo "Upraviť recenziu" - zobrazí sa len autorovi */}
                             {isOwner && (
-                                <>
+                                <div className="mt-3">
                                     <button 
                                         onClick={() => setIsEditModalOpen(true)} 
-                                        className="btn btn-primary btn-sm mt-2"
+                                        className="btn btn-primary btn-sm mr-2"
+                                        disabled={isDeleting}
                                     >
                                         Upraviť recenziu
+                                    </button>
+                                    <button 
+                                        onClick={handleDeleteReview} 
+                                        className="btn btn-danger btn-sm"
+                                        disabled={isDeleting}
+                                    >
+                                        {isDeleting ? "Mazanie..." : 
+                                        <>
+                                            <FontAwesomeIcon icon={faTrash} className="mr-1" /> Vymazať
+                                        </>}
                                     </button>
 
                                     <EditReviewModal
@@ -94,8 +131,7 @@ const ReviewItem = ({
                                             createdAt,
                                         }}
                                     />
-
-                                </>
+                                </div>
                             )}
                         </div>
                     </div>
