@@ -1,6 +1,8 @@
 import NavigationBar from "../components/navigationBar/NavigationBar";
 import HeaderWithImage from "../components/HeaderWithImage";
 import imageMenu from "../../assets/images/menu.jpg"
+import MenuSection from "../page_sections/MenuSection";
+import AddMenuSection from "../page_sections/ButtonAddMenuSection";
 
 
 const MenuPage = () => {
@@ -11,7 +13,9 @@ const MenuPage = () => {
                 title="Menu"
                 bgImage={imageMenu}
                 shapeDivider="shapedivider_line"
-            />
+        />
+        <AddMenuSection/>
+        <MenuSection />
       </div>
   );
 }

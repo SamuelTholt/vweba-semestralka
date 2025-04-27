@@ -2,7 +2,8 @@ import express from "express"
 import mongoose from "mongoose";
 import cors from "cors";
 import publicRoutes from "./src/server/routers/public.router.js";
-import reviewsRoutes from "./src/server/routers/reviews.router.js"
+import reviewsRoutes from "./src/server/routers/reviews.router.js";
+import menuRoutes from "./src/server/routers/menu.router.js";
 
 import { config } from "dotenv";
 import authMiddleware from "./src/server/middleware/auth.middleware.js";
@@ -45,6 +46,7 @@ app.use("/images", express.static(join(__dirname, "public", "images")));
 app.use(authMiddleware);
 app.use("/public", publicRoutes);
 app.use("/reviews", reviewsRoutes);
+app.use("/menu", menuRoutes);
 
 app.use((error, req, res, next) => {
     if (res.headersSent) {
