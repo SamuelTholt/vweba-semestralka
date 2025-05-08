@@ -94,7 +94,7 @@ const signIn = [
           userRole: existingUser.role
         },
         process.env.API_KEY,
-        { expiresIn: '1h' }
+          { expiresIn: '3h' }
       );
       res.status(200).send({ token });
     },

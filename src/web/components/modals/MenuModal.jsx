@@ -2,11 +2,13 @@ import React, { useContext, useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
+import { MenuContext } from "../../contexts/MenuContext";
 
 Modal.setAppElement("#root"); // aby nevyhadzovalo warningy
 
 const MenuModal = ({ isOpen, onRequestClose }) => {
     const { user, token } = useContext(AuthContext);
+    const { fetchMenu } = useContext(MenuContext); 
     const [name , setName] = useState("");
     const [description , setDescription] = useState("");
     const [price, setPrice] = useState(0);
@@ -39,15 +41,12 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
         };
     
         try {
-            const res = await axios.post("http://localhost:5000/menu/create", payload, {
+            await axios.post("http://localhost:5000/menu/create", payload, {
                 headers: {
                     "Content-Type": "application/json",
                     "x-access-token": token
                 }
             });
-            const data = res.data;
-            
-            console.log("Menu item úspešne uložený:", data);
             onRequestClose();
             setName("");
             setDescription("");
@@ -55,7 +54,9 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
             setCategory("");
             setIngredients([]);
     
+            alert("Menu item úspešne pridaný!");
             window.location.reload();
+            fetchMenu();
         } catch (error) {
             console.error("Chyba pri ukladaní menu itemu:", error);
             if (error.response) {

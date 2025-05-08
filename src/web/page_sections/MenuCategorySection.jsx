@@ -5,8 +5,9 @@ const CategorySection = ({ category, items, onEdit, onDelete }) => {
     <div className="container my-5 whiteColor shapedivider_menu">
       <div className="row justify-content-center">
         <div className="col-lg-10">
-          <div className="card">
-            <div className="card-body">
+          <div className="card rounded-0 border-0 shadow-none shapedividers_btm_menu">
+            <div className="card-body"
+            style={{ marginTop:"80px", marginBottom: "80px" }}>
               <h2 className="big-text">{category.name}</h2>
               {items.length === 0 ? (
                 <p>Žiadne položky.</p>

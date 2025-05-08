@@ -2,12 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
+import { MenuContext } from "../../contexts/MenuContext";
 
 
 Modal.setAppElement("#root"); // aby nevyhadzovalo warningy
 
 const EditMenuModal = ({ isOpen, onRequestClose, menuItem }) => {
     const { user, token } = useContext(AuthContext);
+    const { fetchMenu } = useContext(MenuContext);
     const [formData, setFormData] = useState({
         name: "",
         description: "",
@@ -84,11 +86,13 @@ const EditMenuModal = ({ isOpen, onRequestClose, menuItem }) => {
                 }
             });
             
-            console.log("Menu item úspešne upravený:", res.data);
-            onRequestClose();
-            
-            // Obnovenie stránky pre aktualizáciu zoznamu
-            window.location.reload();
+            if (res.status === 200) {
+                //console.log("Menu item úspešne upravený:", res.data);
+                onRequestClose();
+                alert("Item menu úspešne upravený!");
+                window.location.reload();
+                fetchMenu();
+            }
         } catch (error) {
             console.error("Chyba pri úprave menu itemu:", error);
             if (error.response) {
