@@ -79,14 +79,27 @@ const editMenuItem = [
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { id } = req.params;
-        const updateData = req.body;
         
         try {
+            const { id } = req.params;
+            const { name, description, price, category, ingredients, numberOrder } = req.body;
+
+            // Create an updateData object with only the fields that were provided
+            const updateData = {};
+            if (name !== undefined) updateData.name = name;
+            if (description !== undefined) updateData.description = description;
+            if (price !== undefined) updateData.price = price;
+            if (category !== undefined) updateData.category = category;
+            if (ingredients !== undefined) updateData.ingredients = ingredients;
+            if (numberOrder !== undefined) updateData.numberOrder = numberOrder;
+
             const menuItem = await menuModel.findById(id);
             if (!menuItem) {
                 return res.status(404).json({ error: "Položka menu nebola nájdená!" });
             }
+
+            console.log("Current menu item:", menuItem);
+            console.log("Update fields:", updateData);
 
             const oldCategory = menuItem.category;
             const oldNumberOrder = menuItem.numberOrder;

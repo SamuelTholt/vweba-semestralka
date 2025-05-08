@@ -93,24 +93,24 @@ const EditReviewModal = ({ isOpen, onRequestClose, review }) => {
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
-            contentLabel="Edit Review"
-            className="ReviewModal__content"
-            overlayClassName="ReviewModal__overlay"
+            contentLabel="Edit recenzie"
+            className="Modal__content"
+            overlayClassName="Modal__overlay"
         >
-            <div className="ReviewModal__header">
+            <div className="Modal__header">
                 <h5>Upraviť recenziu</h5>
-                <button type="button" className="ReviewModal__close-button" onClick={onRequestClose}>
+                <button type="button" className="Modal__close-button" onClick={onRequestClose}>
                     &times;
                 </button>
             </div>
             
-            {error && <div className="ReviewModal__error">{error}</div>}
+            {error && <div className="Modal__error">{error}</div>}
             
             <form onSubmit={handleSubmit}>
-                <div className="ReviewModal__form-group">
+                <div className="Modal__form-group">
                     <label>Hodnotenie <span className="required">*</span></label>
                     <select
-                        className="ReviewModal__select"
+                        className="Modal__select"
                         name="star_rating"
                         value={formData.star_rating}
                         onChange={handleChange}
@@ -125,10 +125,10 @@ const EditReviewModal = ({ isOpen, onRequestClose, review }) => {
                     </select>
                 </div>
                 
-                <div className="ReviewModal__form-group">
+                <div className="Modal__form-group">
                     <label htmlFor="comment">Komentár <span className="required">*</span></label>
                     <textarea
-                        className="ReviewModal__textarea"
+                        className="Modal__textarea"
                         id="comment"
                         name="comment"
                         value={formData.comment}
@@ -139,7 +139,7 @@ const EditReviewModal = ({ isOpen, onRequestClose, review }) => {
                 </div>
                 
                 {existingImages.length > 0 && (
-                    <div className="ReviewModal__form-group">
+                    <div className="Modal__form-group">
                         <label>Aktuálne obrázky</label>
                         <div className="existing-images">
                             {existingImages.map((img, idx) => {
@@ -166,7 +166,7 @@ const EditReviewModal = ({ isOpen, onRequestClose, review }) => {
                                         />
                                         <button
                                             type="button"
-                                            className={`ReviewModal__button ${isMarkedForDeletion ? 'ReviewModal__button--submit' : 'ReviewModal__button--cancel'}`}
+                                            className={`Modal__button ${isMarkedForDeletion ? 'Modal__button--submit' : 'Modal__button--cancel'}`}
                                             style={{ display: 'block', width: '100%', marginTop: '5px', fontSize: '0.8rem', padding: '3px' }}
                                             onClick={() => toggleImageDelete(img)}
                                         >
@@ -179,33 +179,33 @@ const EditReviewModal = ({ isOpen, onRequestClose, review }) => {
                     </div>
                 )}
                 
-                <div className="ReviewModal__form-group">
+                <div className="Modal__form-group">
                     <label htmlFor="newImages">Pridať nové obrázky</label>
                     <input
                         type="file"
-                        className="ReviewModal__file-input"
+                        className="Modal__file-input"
                         id="newImages"
                         name="newImages"
                         onChange={handleImageChange}
                         multiple
                         accept="image/*"
                     />
-                    <div className="ReviewModal__file-count">
+                    <div className="Modal__file-count">
                         Môžete nahrať maximálne 5 súborov (vrátane existujúcich). Aktuálne: {(existingImages.length - imagesToDelete.length) + newImages.length}/5
                     </div>
                 </div>
                 
-                <div className="ReviewModal__buttons">
+                <div className="Modal__buttons">
                     <button
                         type="button"
-                        className="ReviewModal__button ReviewModal__button--cancel"
+                        className="Modal__button Modal__button--cancel"
                         onClick={onRequestClose}
                     >
                         Zrušiť
                     </button>
                     <button
                         type="submit"
-                        className="ReviewModal__button ReviewModal__button--submit"
+                        className="Modal__button Modal__button--submit"
                         disabled={isSubmitting || (existingImages.length - imagesToDelete.length) + newImages.length > 5}
                     >
                         {isSubmitting ? "Upravujem..." : "Uložiť zmeny"}

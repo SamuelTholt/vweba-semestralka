@@ -83,27 +83,27 @@ const ReviewModal = ({ isOpen, onRequestClose }) => {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="Pridať recenziu"
-      className="ReviewModal__content"
-      overlayClassName="ReviewModal__overlay"
+      className="Modal__content"
+      overlayClassName="Modal__overlay"
     >
-      <div className="ReviewModal__header">
+      <div className="Modal__header">
         <h2>Pridať recenziu</h2>
         <button 
           onClick={onRequestClose}
-          className="ReviewModal__close-button"
+          className="Modal__close-button"
         >
           &times;
         </button>
       </div>
 
       {error && (
-        <div className="ReviewModal__error">
+        <div className="Modal__error">
           {error}
         </div>
       )}
 
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="ReviewModal__form-group">
+        <div className="Modal__form-group">
           <label>
             Komentár <span className="required">*</span>
           </label>
@@ -112,11 +112,11 @@ const ReviewModal = ({ isOpen, onRequestClose }) => {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="Napíšte svoj komentár..."
-            className="ReviewModal__textarea"
+            className="Modal__textarea"
           />
         </div>
 
-        <div className="ReviewModal__form-group">
+        <div className="Modal__form-group">
           <label>
             Hodnotenie <span className="required">*</span>
           </label>
@@ -124,7 +124,7 @@ const ReviewModal = ({ isOpen, onRequestClose }) => {
             value={starRating}
             onChange={(e) => setStarRating(Number(e.target.value))}
             required
-            className="ReviewModal__select"
+            className="Modal__select"
           >
             {[1, 2, 3, 4, 5].map((star) => (
               <option key={star} value={star}>
@@ -134,7 +134,7 @@ const ReviewModal = ({ isOpen, onRequestClose }) => {
           </select>
         </div>
 
-        <div className="ReviewModal__form-group">
+        <div className="Modal__form-group">
           <label>
             Obrázky (max 5)
           </label>
@@ -143,27 +143,27 @@ const ReviewModal = ({ isOpen, onRequestClose }) => {
             accept="image/*"
             multiple
             onChange={handleFileChange}
-            className="ReviewModal__file-input"
+            className="Modal__file-input"
           />
           {images.length > 0 && (
-            <div className="ReviewModal__file-count">
+            <div className="Modal__file-count">
               Vybraté súbory: {images.length}
             </div>
           )}
         </div>
 
-        <div className="ReviewModal__buttons">
+        <div className="Modal__buttons">
           <button 
             type="button" 
             onClick={onRequestClose}
-            className="ReviewModal__button ReviewModal__button--cancel"
+            className="Modal__button Modal__button--cancel"
             disabled={isSubmitting}
           >
             Zrušiť
           </button>
           <button 
             type="submit"
-            className="ReviewModal__button ReviewModal__button--submit"
+            className="Modal__button Modal__button--submit"
             disabled={isSubmitting || images.length > 5 || error}
           >
             {isSubmitting ? "Odosielam..." : "Odoslať"}

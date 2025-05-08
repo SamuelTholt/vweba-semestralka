@@ -75,27 +75,27 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel="Pridať recenziu"
-            className="ReviewModal__content"
-            overlayClassName="ReviewModal__overlay"
+            className="Modal__content"
+            overlayClassName="Modal__overlay"
             >
-            <div className="ReviewModal__header">
+            <div className="Modal__header">
                 <h2>Pridať menu item</h2>
                 <button 
                 onClick={onRequestClose}
-                className="ReviewModal__close-button"
+                className="Modal__close-button"
                 >
                 &times;
                 </button>
             </div>
 
             {error && (
-                <div className="ReviewModal__error">
+                <div className="Modal__error">
                 {error}
                 </div>
             )}
 
             <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <div className="ReviewModal__form-group">
+                <div className="Modal__form-group">
                 <label>
                     Názov <span className="required">*</span>
                 </label>
@@ -104,11 +104,11 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Napíšte názov menu itemu"
-                    className="ReviewModal__textarea"
+                    className="Modal__textarea"
                 />
                 </div>
 
-                <div className="ReviewModal__form-group">
+                <div className="Modal__form-group">
                 <label>
                     Popis:
                 </label>
@@ -116,11 +116,11 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Napíšte popis"
-                    className="ReviewModal__textarea"
+                    className="Modal__textarea"
                 />
                 </div>
 
-                <div className="ReviewModal__form-group">
+                <div className="Modal__form-group">
                 <label>
                     Cena <span className="required">*</span>
                 </label>
@@ -130,11 +130,11 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
                     value={price}
                     onChange={(e) => setPrice(parseFloat(e.target.value))}
                     placeholder="Napíšte cenu"
-                    className="ReviewModal__textarea"
+                    className="Modal__textarea"
                 />
                 </div>
 
-                <div className="ReviewModal__form-group">
+                <div className="Modal__form-group">
                 <label>
                     Kategória <span className="required">*</span>
                 </label>
@@ -142,7 +142,7 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
                     required
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="ReviewModal__select"
+                    className="Modal__select"
                 >
                     <option value="">-- Vyber kategóriu --</option>
                     {["pizza", "starter", "salad", "dessert", "drink", "soup"].map((type) => (
@@ -153,15 +153,15 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
                 </select>
                 </div>
 
-                <div className="ReviewModal__form-group">
+                <div className="Modal__form-group">
                 <label>Ingrediencie:</label>
-                <div className="ReviewModal__ingredients-input">
+                <div className="Modal__ingredients-input">
                     <input
                     type="text"
                     value={ingredientInput}
                     onChange={(e) => setIngredientInput(e.target.value)}
                     placeholder="Napíšte ingredienciu"
-                    className="ReviewModal__textarea"
+                    className="Modal__textarea"
                     />
                     <button
                     type="button"
@@ -171,14 +171,14 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
                         setIngredientInput("");
                         }
                     }}
-                    className="ReviewModal__button ReviewModal__button--small"
+                    className="Modal__button Modal__button--small"
                     >
                     Pridať
                     </button>
                 </div>
 
                 {/* Zoznam ingrediencií */}
-                <ul className="ReviewModal__ingredients-list">
+                <ul className="Modal__ingredients-list">
                     {ingredients.map((ing, index) => (
                     <li key={index}>
                         {ing}
@@ -187,7 +187,7 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
                         onClick={() => {
                             setIngredients(ingredients.filter((_, i) => i !== index));
                         }}
-                        className="ReviewModal__remove-ingredient"
+                        className="Modal__remove-ingredient"
                         >
                         ×
                         </button>
@@ -196,18 +196,18 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
                 </ul>
                 </div>
 
-                <div className="ReviewModal__buttons">
+                <div className="Modal__buttons">
                 <button 
                     type="button" 
                     onClick={onRequestClose}
-                    className="ReviewModal__button ReviewModal__button--cancel"
+                    className="Modal__button Modal__button--cancel"
                     disabled={isSubmitting}
                 >
                     Zrušiť
                 </button>
                 <button 
                     type="submit"
-                    className="ReviewModal__button ReviewModal__button--submit"
+                    className="Modal__button Modal__button--submit"
                     disabled={isSubmitting || error}
                 >
                     {isSubmitting ? "Odosielam..." : "Odoslať"}

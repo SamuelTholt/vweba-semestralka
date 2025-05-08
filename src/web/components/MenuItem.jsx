@@ -4,10 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 const MenuItem = ({ item, onEdit, onDelete }) => {
     const { user } = useContext(AuthContext);
 
-    let isAdmin = null;
-    if(user != null) {
-        isAdmin = user.role === "admin"
-    }
+    const isAdmin = user?.role === "admin";
     //console.log(isAdmin);
     return (
         <li className="list-group-item">
