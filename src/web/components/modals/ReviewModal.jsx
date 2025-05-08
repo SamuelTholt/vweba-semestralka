@@ -2,11 +2,13 @@ import React, { useContext, useState } from "react";
 import Modal from "react-modal";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
+import { useReviewContext } from "../../contexts/ReviewContext";
 
 Modal.setAppElement("#root"); // aby nevyhadzovalo warningy
 
 const ReviewModal = ({ isOpen, onRequestClose }) => {
   const { token, isAuthenticated } = useContext(AuthContext);
+  const { fetchReviews, currentPage } = useReviewContext();
   const [comment, setComment] = useState("");
   const [starRating, setStarRating] = useState(1);
   const [images, setImages] = useState([]);
@@ -62,7 +64,7 @@ const ReviewModal = ({ isOpen, onRequestClose }) => {
       setStarRating(1);
       setImages([]);
 
-      window.location.reload();
+      fetchReviews(currentPage);
     } catch (error) {
       console.error("Chyba pri ukladaní recenzie:", error);
       if (error.response) {

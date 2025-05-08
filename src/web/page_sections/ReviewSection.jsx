@@ -1,92 +1,68 @@
-import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useEffect } from "react";
 import ReviewItem from "../components/ReviewItem";
 import { AuthContext } from "../contexts/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import ReviewStats from "../components/ReviewStats";
+import { useReviewContext } from "../contexts/ReviewContext";
 
 
 const ReviewSection = () => {
     const { token } = useContext(AuthContext);
-    const [reviews, setReviews] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const [sortOrder, setSortOrder] = useState("desc");
-    const [showMyReviews, setShowMyReviews] = useState(false);
-    const [hasUserReviews, setHasUserReviews] = useState(false);
-
-    const checkUserReviews = async () => {
-        if (!token) return;
-        
-        try {
-            const response = await axios.get(`http://localhost:5000/reviews/myReviews?page=1&limit=1`, {
-                headers: {
-                    "x-access-token": token,
-                }
-            });
-            
-            setHasUserReviews(response.data.totalPages > 0);
-        } catch (error) {
-            console.error("Chyba pri kontrole používateľských recenzií:", error);
-            setHasUserReviews(false);
-        }
-    };
-
-    const fetchReviews = async (page) => {
-        try {
-            const sortQuery = `&sort=${sortOrder}`;
-            const endpoint = showMyReviews 
-                ? `http://localhost:5000/reviews/myReviews?page=${page}&limit=4${sortQuery}`
-                : `http://localhost:5000/reviews?page=${page}&limit=4${sortQuery}`;
-    
-            const response = await axios.get(endpoint, {
-                headers: {
-                    "x-access-token": token,
-                }
-            });
-    
-            if (showMyReviews) {
-                setReviews(response.data.reviews);
-                setTotalPages(response.data.totalPages);
-                setCurrentPage(response.data.currentPage);
-            } else {
-                setReviews(response.data.reviews);
-                setTotalPages(response.data.totalPages);
-                setCurrentPage(response.data.currentPage);
-            }
-        } catch (error) {
-            console.error("Chyba pri načítavaní recenzií:", error);
-        } 
-    };
+    const { 
+        reviews, 
+        currentPage, 
+        totalPages, 
+        sortOrder, 
+        showMyReviews, 
+        hasUserReviews,
+        isLoading,
+        error,
+        fetchReviews, 
+        checkUserReviews, 
+        changePage,
+        toggleSortOrder, 
+        toggleShowMyReviews 
+    } = useReviewContext();
 
     useEffect(() => {
         if (token) {
             fetchReviews(currentPage);
             checkUserReviews();
         }
-    }, [currentPage, token, sortOrder, showMyReviews]);
+    }, [fetchReviews, checkUserReviews, currentPage, token]);
 
     const handlePageClick = (pageNumber) => {
-        setCurrentPage(pageNumber);
+        changePage(pageNumber);
     };
 
-    const toggleSortOrder = () => {
-        setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
-    };
+    if (isLoading && reviews.length === 0) {
+        return (
+            <div className="whiteColor text-center">
+                <h2 className="mb-4">Napísali o nás</h2>
+                <p>Načítavam recenzie...</p>
+            </div>
+        );
+    }
 
-    const toggleShowMyReviews = () => {
-        setShowMyReviews((prev) => !prev);
-        setCurrentPage(1);
-    };
+    if (error) {
+        return (
+            <div className="whiteColor text-center">
+                <h2 className="mb-4">Napísali o nás</h2>
+                <p>Nastala chyba: {error}</p>
+            </div>
+        );
+    }
 
-    if (!Array.isArray(reviews) || reviews.length === 0) return (
-        <div className="whiteColor text-center">
-            <h2 className="mb-4">Napísali o nás</h2>
-            <p>Žiadne recenzie zatiaľ nie sú.</p>
-        </div>
-    );
+    if (!Array.isArray(reviews) || reviews.length === 0) {
+        return (
+            <div className="whiteColor text-center">
+                <h2 className="mb-4">Napísali o nás</h2>
+                <p>Žiadne recenzie zatiaľ nie sú.</p>
+            </div>
+        );
+    }
 
     return (
         <section className="py-5">
@@ -100,8 +76,7 @@ const ReviewSection = () => {
                                 {sortOrder === "asc" ? "Najstaršie prvé" : "Najnovšie prvé"}
                             </button>
 
-
-                             {token && hasUserReviews && (
+                            {token && hasUserReviews && (
                                 <button className="btn btn-info" onClick={toggleShowMyReviews}>
                                     {showMyReviews ? "Zobraziť všetky recenzie" : "Zobraziť moje recenzie"}
                                 </button>
@@ -126,8 +101,8 @@ const ReviewSection = () => {
                         {/* Ovládanie stránkovania */}
                         <div style={{ marginTop: "30px", display: "flex", justifyContent: "center", gap: "10px", alignItems: "center" }}>
                             <button type="button" className="btn btn-primary" 
-                                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} 
-                                disabled={currentPage === 1}
+                                onClick={() => changePage(Math.max(currentPage - 1, 1))} 
+                                disabled={currentPage === 1 || isLoading}
                             >
                                 <FontAwesomeIcon icon={faArrowLeft} style={{color: "#ffffff"}} />
                             </button>
@@ -150,8 +125,8 @@ const ReviewSection = () => {
                             ))}
 
                             <button type="button" className="btn btn-primary" 
-                                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} 
-                                disabled={currentPage === totalPages}
+                                onClick={() => changePage(Math.min(currentPage + 1, totalPages))} 
+                                disabled={currentPage === totalPages || isLoading}
                             >
                                 <FontAwesomeIcon icon={faArrowRight} style={{color: "#ffffff"}} />
                             </button>

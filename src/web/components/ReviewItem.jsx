@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ImageModal from "./modals/ImageModal";
 import EditReviewModal from "./modals/EditReviewModal";
-import { AuthContext } from "../contexts/AuthContext";
-import axios from "axios";
+import { useReviewContext } from "../contexts/ReviewContext";
 
 
 const ReviewItem = ({
@@ -15,9 +14,8 @@ const ReviewItem = ({
     pridal_user_id,
     images,
     createdAt,
-    onReviewDeleted
 }) => {
-    const { user, token } = useContext(AuthContext);
+    const { deleteReview, isReviewOwner } = useReviewContext();
     const [modalImage, setModalImage] = useState(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
@@ -31,29 +29,16 @@ const ReviewItem = ({
     };
 
     const handleDeleteReview = async () => {
-        if (window.confirm("Skutočne chcete vymazať túto recenziu?")) {
-            setIsDeleting(true);
-            try {
-                await axios.delete(`http://localhost:5000/reviews/delete/${_id}`, {
-                    headers: {
-                        "x-access-token": token,
-                    }
-                });
-                if (onReviewDeleted) {
-                    onReviewDeleted(_id);
-                } else {
-                    window.location.reload();
-                }
-            } catch (error) {
-                console.error("Error deleting review:", error);
-                alert("Nepodarilo sa vymazať recenziu.");
-            } finally {
-                setIsDeleting(false);
-            }
+        setIsDeleting(true);
+        try {
+            await deleteReview(_id);
+        } finally {
+            setIsDeleting(false);
         }
     };
 
-    const isOwner = user && user.id === pridal_user_id || user.role == "admin";
+    const isOwner = isReviewOwner(pridal_user_id);
+    
     return (
         <div className="container review-container">
             <div className="card">
