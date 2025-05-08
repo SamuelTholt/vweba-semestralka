@@ -80,6 +80,7 @@ const EditReviewModal = ({ isOpen, onRequestClose, review }) => {
             if (response.status === 200) {
                 onRequestClose();
                 alert("Recenzia úspešne upravená!");
+                window.location.reload();
                 fetchReviews(currentPage);
             }
         } catch (err) {

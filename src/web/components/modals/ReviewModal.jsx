@@ -50,21 +50,20 @@ const ReviewModal = ({ isOpen, onRequestClose }) => {
 
     try {
       const authToken = token;
-      const res = await axios.post("http://localhost:5000/reviews/create", formData, {
+      await axios.post("http://localhost:5000/reviews/create", formData, {
         headers: {
           "x-access-token": authToken,
         }
       });
-      const data = res.data;
-    
-      console.log("Recenzia úspešne uložená:", data);
-      // Vyresetuj formulár a zatvor modal
       onRequestClose();
       setComment("");
       setStarRating(1);
       setImages([]);
 
+      alert("Recenzia úspešne pridaná!");
+      window.location.reload();
       fetchReviews(currentPage);
+
     } catch (error) {
       console.error("Chyba pri ukladaní recenzie:", error);
       if (error.response) {

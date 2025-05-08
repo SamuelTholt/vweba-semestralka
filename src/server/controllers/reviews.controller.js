@@ -128,7 +128,7 @@ const editReview = [
           imagesToDelete = [imagesToDelete];
         }
         
-        console.log("Images to delete:", imagesToDelete);
+        console.log("Obrázky na vymazanie:", imagesToDelete);
   
         const existingReview = await review.findById(reviewId);
         if (!existingReview) {
@@ -146,22 +146,22 @@ const editReview = [
           imgPath => !imagesToDelete.includes(imgPath)
         );
         
-        console.log("Updated images after filtering:", updatedImages);
+        console.log("Aktualizované obrázky po filtrácií:", updatedImages);
   
 
         for (const imgPath of imagesToDelete) {
           try {
             const fullPath = path.join(process.cwd(), imgPath);
-            console.log("Attempting to delete file:", fullPath);
+            console.log("Pokus o vymazanie súboru: ", fullPath);
             
             if (fs.existsSync(fullPath)) {
               fs.unlinkSync(fullPath);
-              console.log("Successfully deleted file:", fullPath);
+              console.log("Súbor bol úspešne vymazaný: ", fullPath);
             } else {
-              console.log("File not found:", fullPath);
+              console.log("Súbor nebol nájdený: ", fullPath);
             }
           } catch (err) {
-            console.error("Error deleting file:", err);
+            console.error("Chyba pri mazaní súboru: ", err);
           }
         }
   
@@ -170,7 +170,7 @@ const editReview = [
           updatedImages = [...updatedImages, ...newImagePaths];
         }
         
-        console.log("Final updated images:", updatedImages);
+        console.log("Finálne obrázky:", updatedImages);
   
         if (updatedImages.length > 5) {
           if (req.files && req.files.length > 0) {
@@ -217,11 +217,16 @@ const deleteReview = async (req, res) => {
     
         if (existingReview.images && existingReview.images.length > 0) {
             existingReview.images.forEach(imagePath => {
-            const fullPath = path.join(__dirname, '..', imagePath);
-            if (fs.existsSync(fullPath)) {
+              const fullPath = path.join(process.cwd(), imagePath);
+              console.log("Pokus o vymazanie súboru:", fullPath);
+                
+              if (fs.existsSync(fullPath)) {
                 fs.unlinkSync(fullPath);
-            }
-            });
+                console.log("Súbor bol úspešne vymazaný:", fullPath);
+              } else {
+                console.log("Súbor nebol nájdený:", fullPath);
+              }
+          });
         }
     
         await review.findByIdAndDelete(reviewId);

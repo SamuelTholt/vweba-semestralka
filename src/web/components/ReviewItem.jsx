@@ -32,6 +32,8 @@ const ReviewItem = ({
         setIsDeleting(true);
         try {
             await deleteReview(_id);
+            alert("Recenzia úspešne vymazaná!");
+            window.location.reload();
         } finally {
             setIsDeleting(false);
         }
