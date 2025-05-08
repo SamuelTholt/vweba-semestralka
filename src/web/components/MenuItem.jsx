@@ -1,21 +1,44 @@
-import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
-const MenuItemos = ({ item, onEdit, onDelete }) => {
+const MenuItem = ({ item, onEdit, onDelete }) => {
+    const { user } = useContext(AuthContext);
+
+    let isAdmin = null;
+    if(user != null) {
+        isAdmin = user.role === "admin"
+    }
+    //console.log(isAdmin);
     return (
-        <div className="menu-item d-flex justify-content-between align-items-center py-2 border-bottom">
-            <div>
-                <h5 className="mb-1">{item.name} – {item.price}€</h5>
-                <p className="mb-0">{item.description}</p>
-                {item.ingredients && (
-                    <small className="text-muted">Ingrediencie: {item.ingredients.join(", ")}</small>
-                )}
+        <li className="list-group-item">
+            <div className="d-flex justify-content-between align-items-start">
+                <div className="flex-grow-1">
+                <strong>{item.numberOrder}. {item.name}</strong>
+                {item.description && <div className="text-muted">{item.description}</div>}
+                {item.ingredients && <div><em>{item.ingredients.join(", ")}</em></div>}
+                </div>
+                <div className="d-flex flex-column align-items-end">
+                <div className="mb-2">{item.price.toFixed(2)} €</div>
+                    {isAdmin && (
+                        <div className="btn-group">
+                        <button 
+                        className="btn btn-sm btn-outline-primary me-1" 
+                        onClick={() => onEdit(item)}
+                        >
+                        Upraviť
+                        </button>
+                        <button 
+                        className="btn btn-sm btn-outline-danger" 
+                        onClick={() => onDelete(item._id)}
+                        >
+                        Vymazať
+                        </button>
+                    </div>
+                    )}
+                </div>
             </div>
-            <div>
-                <button className="btn btn-sm btn-warning me-2" onClick={() => onEdit(item)}>Editovať</button>
-                <button className="btn btn-sm btn-danger" onClick={() => onDelete(item._id)}>Odstrániť</button>
-            </div>
-        </div>
+        </li>
     );
 };
 
-export default MenuItemos;
+export default MenuItem;
