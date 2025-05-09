@@ -3,7 +3,6 @@ import { MenuContext } from "../contexts/MenuContext";
 
 const MenuItem = ({ item, onEdit, onDelete }) => {
     const { isAdmin } = useContext(MenuContext);
-    const isAdminUser = isAdmin();
 
     return (
         <li className="list-group-item">
@@ -15,7 +14,7 @@ const MenuItem = ({ item, onEdit, onDelete }) => {
                 </div>
                 <div className="d-flex flex-column align-items-end">
                     <div className="mb-2">{item.price.toFixed(2)} €</div>
-                    {isAdminUser && (
+                    {isAdmin() && (
                         <div className="btn-group">
                             <button 
                                 className="btn btn-sm btn-outline-primary me-1" 

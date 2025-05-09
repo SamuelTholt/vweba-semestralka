@@ -18,7 +18,7 @@ export const GalleryProvider = ({ children }) => {
     const { user, token } = useContext(AuthContext);
     
     const isAdmin = useCallback(() => {
-        return user && user.role === "admin";
+        return user && (user.role === "admin" || user.role === "hl.admin");
     }, [user]);
 
     const fetchPhotos = useCallback(async (page) => {

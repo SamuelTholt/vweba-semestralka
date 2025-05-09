@@ -7,7 +7,7 @@ import { GalleryContext } from "../../contexts/GalleryContext";
 Modal.setAppElement("#root");
 
 const EditPhotoModal = ({ isOpen, onRequestClose, photoItem }) => {
-    const { token } = useContext(AuthContext);
+    const { user, token } = useContext(AuthContext);
     const { fetchPhotos } = useContext(GalleryContext); 
     const [formData, setFormData] = useState({
         title: "",
@@ -30,6 +30,8 @@ const EditPhotoModal = ({ isOpen, onRequestClose, photoItem }) => {
         }
     }, [photoItem]);
 
+    const isAdmin = ["admin", "hl.admin"].includes(user?.role);
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -46,6 +48,11 @@ const EditPhotoModal = ({ isOpen, onRequestClose, photoItem }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!isAdmin) {
+            setError("Nemáte oprávnenie upravovať fotografie!");
+            return;
+        }
+
         setIsSubmitting(true);
         setError("");
 

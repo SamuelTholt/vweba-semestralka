@@ -20,7 +20,7 @@ const MenuModal = ({ isOpen, onRequestClose }) => {
     const [error, setError] = useState("");
 
 
-    const isAdmin = user?.role === "admin";
+    const isAdmin = ["admin", "hl.admin"].includes(user?.role);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

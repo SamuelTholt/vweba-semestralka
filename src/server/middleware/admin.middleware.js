@@ -9,7 +9,7 @@ export const adminMiddleware = (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.API_KEY);
         req.user = decoded; 
-        if (req.user.userRole !== 'admin') {
+        if (!['admin', 'hl.admin'].includes(req.user.userRole)) {
             return res.status(403).json({ error: 'Nemáte oprávnenie na túto akciu!' });
         }
 

@@ -136,7 +136,7 @@ const editReview = [
         }
 
         const isOwner = existingReview.pridal_user_id.toString() === req.user.userId;
-        const isAdmin = req.user.userRole === "admin";
+        const isAdmin = ["admin", "hl.admin"].includes(req.user.userRole);
         
         if (!isOwner && !isAdmin) {
           return res.status(403).json({ error: "Nemáte oprávnenie upravovať túto recenziu!" });
@@ -209,7 +209,7 @@ const deleteReview = async (req, res) => {
         }
     
         const isOwner = existingReview.pridal_user_id.toString() === req.user.userId;
-        const isAdmin = req.user.userRole === "admin";
+        const isAdmin = ["admin", "hl.admin"].includes(req.user.userRole);
             
         if (!isOwner && !isAdmin) {
          return res.status(403).json({ error: "Nemáte oprávnenie vymazať túto recenziu!" });

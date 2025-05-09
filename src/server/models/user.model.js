@@ -7,7 +7,7 @@ const userSchema = new Schema(
         name: { type: String, required: true },
         email: { type: String, lowercase: true, trim: true },
         password: { type: String, required: true },
-        role: { type: String, enum: ['user', 'admin'], default: 'user' },
+        role: { type: String, enum: ['user', 'admin', 'hl.admin'], default: 'user' },
         salt: { type: String, required: true },
     },
     { timestamps: true }

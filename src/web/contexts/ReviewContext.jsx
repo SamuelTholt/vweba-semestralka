@@ -84,7 +84,7 @@ export const ReviewProvider = ({ children }) => {
     }, [token]);
 
     const isReviewOwner = useCallback((reviewUserId) => {
-        return user && (user.id === reviewUserId || user.role === "admin");
+        return user && (user.id === reviewUserId || (user.role === "admin" || user.role === "hl.admin"));
     }, [user]);
 
     const changePage = useCallback((pageNumber) => {

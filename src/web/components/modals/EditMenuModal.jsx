@@ -22,7 +22,7 @@ const EditMenuModal = ({ isOpen, onRequestClose, menuItem }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState("");
     
-    const isAdmin = user?.role === "admin";
+    const isAdmin = ["admin", "hl.admin"].includes(user?.role);
     
     // Načítanie dát z menu itemu pri otvorení modalu
     useEffect(() => {

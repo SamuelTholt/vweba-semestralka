@@ -17,7 +17,7 @@ const AddPhotoSection = () => {
     };
 
   
-    const isAdmin = user?.role === "admin";
+    const isAdmin = ["admin", "hl.admin"].includes(user?.role);
   
     return (
       <section className="py-5" ref={ref}>
