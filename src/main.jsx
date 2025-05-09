@@ -5,13 +5,16 @@ import { AuthProvider } from './web/contexts/AuthContext.jsx'
 import App from './App.jsx'
 import { ReviewProvider } from './web/contexts/ReviewContext.jsx'
 import { MenuProvider } from './web/contexts/MenuContext.jsx'
+import GalleryProvider from './web/contexts/GalleryContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
       <ReviewProvider>
         <MenuProvider>
-          <App />
+          <GalleryProvider>
+            <App />
+          </GalleryProvider>
         </MenuProvider>
       </ReviewProvider>
     </AuthProvider>

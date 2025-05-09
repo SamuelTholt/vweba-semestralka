@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Modal from "react-modal";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
+import { GalleryContext } from "../../contexts/GalleryContext";
 
 Modal.setAppElement("#root"); // aby nevyhadzovalo warningy
 
@@ -11,6 +12,7 @@ const PhotoModal = ({ isOpen, onRequestClose }) => {
     const [image, setImage] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState("");
+    const { fetchPhotos } = useContext(GalleryContext); 
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -47,7 +49,7 @@ const PhotoModal = ({ isOpen, onRequestClose }) => {
 
             alert("Fotografia úspešne pridaná!");
             window.location.reload();
-
+            fetchPhotos();
         } catch (error) {
             console.error("Chyba pri ukladaní fotografie:", error);
         if (error.response) {

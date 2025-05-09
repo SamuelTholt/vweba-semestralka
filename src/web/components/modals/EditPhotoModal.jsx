@@ -2,11 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
+import { GalleryContext } from "../../contexts/GalleryContext";
 
 Modal.setAppElement("#root");
 
 const EditPhotoModal = ({ isOpen, onRequestClose, photoItem }) => {
     const { token } = useContext(AuthContext);
+    const { fetchPhotos } = useContext(GalleryContext); 
     const [formData, setFormData] = useState({
         title: "",
         numberOrder: 0
@@ -71,6 +73,7 @@ const EditPhotoModal = ({ isOpen, onRequestClose, photoItem }) => {
                 onRequestClose();
                 alert("Fotografia úspešne upravená!");
                 window.location.reload();
+                fetchPhotos();
             }
         } catch (err) {
             setError(err.response?.data?.error || "Failed to update photo");

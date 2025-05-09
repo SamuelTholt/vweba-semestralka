@@ -20,7 +20,6 @@ export const MenuProvider = ({ children }) => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
 
-    // Fetch menu data
     const fetchMenu = useCallback(async () => {
         try {
             const res = await axios.get("http://localhost:5000/menu?category=all");
@@ -30,12 +29,10 @@ export const MenuProvider = ({ children }) => {
         }
     }, []);
 
-    // Load menu data on component mount
     useEffect(() => {
         fetchMenu();
     }, [fetchMenu]);
 
-    // Delete menu item
     const deleteMenuItem = useCallback(async (itemId) => {
         if (!token) return false;
 
@@ -47,7 +44,7 @@ export const MenuProvider = ({ children }) => {
                     }
                 });
                 
-                // Update the list after deletion
+
                 alert("Podarilo sa vymazať item z menu!");
                 await fetchMenu();
                 return true;
@@ -60,24 +57,20 @@ export const MenuProvider = ({ children }) => {
         return false;
     }, [token, fetchMenu]);
 
-    // Open edit modal
     const handleEdit = useCallback((item) => {
         setSelectedItem(item);
         setIsEditModalOpen(true);
     }, []);
 
-    // Close edit modal
     const closeEditModal = useCallback(() => {
         setIsEditModalOpen(false);
         setSelectedItem(null);
     }, []);
 
-    // Check if user is admin
     const isAdmin = useCallback(() => {
         return user && user.role === "admin";
     }, [user]);
 
-    // Get items by category
     const getItemsByCategory = useCallback((categoryId) => {
         return menuItems.filter(item => item.category === categoryId);
     }, [menuItems]);
