@@ -91,7 +91,6 @@ const PhotoModal = ({ isOpen, onRequestClose }) => {
                 Titulný popisok: 
             </label>
             <textarea
-                required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Napíšte titulok"

@@ -14,8 +14,27 @@ const __dirname = dirname(__filename);
 let upload = multer({ storage, fileFilter, limits: { fileSize:"10MB" } });
 
 const getPhotos = async(req, res) => {
-    const allPhotos = await galleryModel.find();
-    res.json(allPhotos);
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 8;
+        const skip = (page - 1) * limit;
+        const photos = await galleryModel.find()
+            .sort({ numberOrder: 1 })
+            .skip(skip)
+            .limit(limit);
+            
+        const totalPhotos = await galleryModel.countDocuments();
+        
+        res.json({
+            photos,
+            totalPages: Math.ceil(totalPhotos / limit),
+            currentPage: page,
+            totalPhotos
+        });
+    } catch (error) {
+        console.error("Chyba pri načítaní fotiek:", error);
+        res.status(500).json({ error: "Niečo sa pokazilo pri načítavaní fotiek!" });
+    }
 }
 
 const createPhoto = [
@@ -129,6 +148,18 @@ const deletePhoto = async (req, res) => {
         if (!photo) {
             return res.status(404).json({ error: "Fotka nenájdená!" });
         }
+
+
+        const fullPath = path.join(process.cwd(), photo.imageLocation);
+        console.log("Pokus o vymazanie súboru:", fullPath);
+                
+        if (fs.existsSync(fullPath)) {
+            fs.unlinkSync(fullPath);
+            console.log("Súbor bol úspešne vymazaný:", fullPath);
+        } else {
+            console.log("Súbor nebol nájdený:", fullPath);
+        }
+        
         await galleryModel.findByIdAndDelete(id);
     
         res.json({ message: "Fotka odstránená!" });
