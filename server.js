@@ -4,6 +4,7 @@ import cors from "cors";
 import publicRoutes from "./src/server/routers/public.router.js";
 import reviewsRoutes from "./src/server/routers/reviews.router.js";
 import menuRoutes from "./src/server/routers/menu.router.js";
+import galleryRoutes from "./src/server/routers/gallery.router.js";
 
 import { config } from "dotenv";
 import authMiddleware from "./src/server/middleware/auth.middleware.js";
@@ -47,6 +48,7 @@ app.use(authMiddleware);
 app.use("/public", publicRoutes);
 app.use("/reviews", reviewsRoutes);
 app.use("/menu", menuRoutes);
+app.use("/gallery", galleryRoutes);
 
 app.use((error, req, res, next) => {
     if (res.headersSent) {
