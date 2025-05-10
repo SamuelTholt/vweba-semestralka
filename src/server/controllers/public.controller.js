@@ -100,7 +100,97 @@ const signIn = [
     },
 ];
 
+
+// Získať všetkých používateľov (len pre admina)
+const getAllUsers = [
+  async (req, res) => {
+    try {
+
+      const isAdmin = req.user.userRole === "hl.admin";
+      
+      if (!isAdmin) {
+        return res.status(403).json({ error: "Nemáte oprávnenie zobraziť userov" });
+      }
+  
+
+      const users = await userModel.find({}, '-password -salt');
+      res.status(200).json(users);
+    } catch (error) {
+      console.error("Error getting users:", error);
+      res.status(500).json({ message: "Chyba pri získavaní používateľov" });
+    }
+  }
+];
+
+// Zmeniť rolu používateľa (len pre admina)
+const changeUserRole = [
+  async (req, res) => {
+    const { userId } = req.params;
+    const { role } = req.body;
+
+    const isAdmin = req.user.userRole === "hl.admin";
+      
+      if (!isAdmin) {
+        return res.status(403).json({ error: "Nemáte oprávnenie meniť role userov" });
+      }
+
+    if (!role || !['user', 'admin'].includes(role)) {
+      return res.status(400).json({ message: "Neplatná rola. Povolené hodnoty sú 'user' alebo 'admin'." });
+    }
+
+    try {
+      const user = await userModel.findById(userId);
+      
+      if (!user) {
+        return res.status(404).json({ message: "Používateľ nebol nájdený" });
+      }
+
+      // Skontrolujeme, či admin nepokúša zmeniť sám seba
+      if (userId === req.user.userId) {
+        return res.status(403).json({ 
+          message: "Nemôžete zmeniť svoju vlastnú rolu" 
+        });
+      }
+
+      user.role = role;
+      await user.save();
+
+      res.status(200).json({ 
+        message: "Rola používateľa bola úspešne zmenená",
+        user: {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role
+        }
+      });
+    } catch (error) {
+      console.error("Error changing user role:", error);
+      res.status(500).json({ message: "Chyba pri zmene role používateľa" });
+    }
+  }
+];
+
+// Získať info o aktuálnom používateľovi
+const getCurrentUser = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.userData.userId, '-password -salt');
+    
+    if (!user) {
+      return res.status(404).json({ message: "Používateľ nebol nájdený" });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("Error getting current user:", error);
+    res.status(500).json({ message: "Chyba pri získavaní údajov o používateľovi" });
+  }
+};
+
 export default {
     signIn,
-    signUp
+    signUp,
+    getAllUsers,
+    changeUserRole,
+    getCurrentUser
 };

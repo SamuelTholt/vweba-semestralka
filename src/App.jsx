@@ -11,6 +11,7 @@ import MenuPage from './web/pages/MenuPage';
 import ReviewPage from './web/pages/ReviewPage';
 import PhotoPage from './web/pages/PhotoGalleryPage';
 import ProtectedRoute from './web/components/ProtectedRoute';
+import AdminPanelPage from './web/pages/AdminPanelPage';
 
 function App() {
   return (
@@ -27,6 +28,14 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
+        <Route 
+          path="/admin" 
+          element={
+            <ProtectedRoute requiredRole="hl.admin">
+              <AdminPanelPage />
+            </ProtectedRoute>
+          } 
+        />
       </Routes>
     </Router>
   )

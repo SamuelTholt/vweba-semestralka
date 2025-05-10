@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faRightToBracket, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const UserDropdown = () => {
   const navigate = useNavigate();
   const { user, logout } = useContext(AuthContext);
 
-  return (
+    return (
     <div className="dropdown">
       <button
         className="btn btn-secondary dropdown-toggle"
@@ -21,13 +21,21 @@ const UserDropdown = () => {
         {user ? user.name : "Login/Register"}
         {user && (
           <span className="text-sm text-gray-500 ms-2">
-            <span >[{user.role}]</span>
+            <span>[{user.role}]</span>
           </span>
         )}
       </button>
       <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         {user ? (
           <>
+            {user.role === "hl.admin" && (
+              <li>
+                <button className="dropdown-item" onClick={() => navigate("/admin")}>
+                  <FontAwesomeIcon icon={faUserCog} className="me-2" />
+                  Úprava rolí
+                </button>
+              </li>
+            )}
             <li>
               <button className="dropdown-item" onClick={logout}>
                 Odhlásiť sa
