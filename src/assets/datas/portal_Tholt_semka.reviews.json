@@ -22,25 +22,6 @@
 },
 {
   "_id": {
-    "$oid": "680d3ce99aaa515aabc0ed3e"
-  },
-  "comment": "Bol som tu znova a stále sú lepší a lepší a som rád, že stále sa držia :D",
-  "star_rating": 5,
-  "pridal_user": "Samuel Tholt",
-  "pridal_user_id": {
-    "$oid": "680d3c1d9aaa515aabc0ed31"
-  },
-  "images": [],
-  "createdAt": {
-    "$date": "2025-04-26T20:07:05.389Z"
-  },
-  "updatedAt": {
-    "$date": "2025-04-26T20:07:05.389Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
     "$oid": "680d3f8a9aaa515aabc0ed68"
   },
   "comment": "Milý personál a rýchla obsluha.",
@@ -64,7 +45,7 @@
   "_id": {
     "$oid": "680d3fe79aaa515aabc0ed71"
   },
-  "comment": "Bolo to fajn, ale trochu drahé.",
+  "comment": "Bolo to fajn, ale trochu drahé. Ale nevadí :D",
   "star_rating": 4,
   "pridal_user": "Jakub Horvath",
   "pridal_user_id": {
@@ -75,7 +56,7 @@
     "$date": "2024-12-26T12:58:18.541Z"
   },
   "updatedAt": {
-    "$date": "2024-12-26T12:58:18.541Z"
+    "$date": "2025-05-08T13:15:03.170Z"
   },
   "__v": 0
 },
@@ -118,6 +99,25 @@
   },
   "updatedAt": {
     "$date": "2024-11-26T20:23:06.203Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680d3ce99aaa515aabc0ed3e"
+  },
+  "comment": "Bol som tu znova a stále sú lepší a lepší a som rád, že stále sa držia :)",
+  "star_rating": 5,
+  "pridal_user": "Samuel Tholt",
+  "pridal_user_id": {
+    "$oid": "680d3c1d9aaa515aabc0ed31"
+  },
+  "images": [],
+  "createdAt": {
+    "$date": "2025-04-26T20:07:05.389Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-09T21:35:38.581Z"
   },
   "__v": 0
 }]

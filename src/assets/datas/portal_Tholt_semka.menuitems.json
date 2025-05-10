@@ -1,0 +1,401 @@
+[{
+  "_id": {
+    "$oid": "681fc20c27e56e215459db47"
+  },
+  "numberOrder": 1,
+  "name": "Margherita",
+  "description": "Klasika, ktorá nikdy nesklame",
+  "price": 7.9,
+  "category": "pizza",
+  "ingredients": [
+    "paradajkový základ",
+    "mozzarella",
+    "čerstvá bazalka"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc27b27e56e215459db51"
+  },
+  "numberOrder": 2,
+  "name": "Prosciutto e Funghi",
+  "description": "Šunka a šampiňóny na jemnom paradajkovom základe s bohatou vrstvou syra.",
+  "price": 8.9,
+  "category": "pizza",
+  "ingredients": [
+    "paradajkový základ",
+    "mozzarella",
+    "šunka",
+    "čerstvé šampiňóny",
+    "oregano"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc2e227e56e215459db6d"
+  },
+  "numberOrder": 3,
+  "name": "Quattro Formaggi",
+  "description": "Mozzarella, gorgonzola, parmezán a ementál – raj pre milovníkov syrov.\n",
+  "price": 9.9,
+  "category": "pizza",
+  "ingredients": [
+    "paradajkový základ",
+    "mozzarella",
+    "gorgonzola",
+    "parmezán",
+    "ementál",
+    "kvapka olivového oleja"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc32327e56e215459db77"
+  },
+  "numberOrder": 4,
+  "name": "Diavola",
+  "description": "Pikantné salámy, jalapeños, paradajkový základ a mozzarella – pre tých, čo sa neboja ohňa!",
+  "price": 9.5,
+  "category": "pizza",
+  "ingredients": [
+    "paradajkový základ",
+    "mozzarella",
+    "pikantná saláma (napr. pepperoni alebo chorizo)",
+    "jalapeños",
+    "červená cibuľa",
+    "chilli vločky (voliteľné)"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc37e27e56e215459db81"
+  },
+  "numberOrder": 5,
+  "name": "Capricciosa",
+  "description": "Šunka, šampiňóny, olivy a artičoky – dokonalá rovnováha chutí.",
+  "price": 9.9,
+  "category": "pizza",
+  "ingredients": [
+    "paradajkový základ",
+    "mozzarella",
+    "šunka",
+    "šampiňóny",
+    "zelené alebo čierne olivy",
+    "artičoky",
+    "oregano"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc3b527e56e215459db8b"
+  },
+  "numberOrder": 6,
+  "name": "BBQ Kuracia",
+  "description": "Kuracie kúsky, BBQ omáčka, červená cibuľa a syr – sladko-slaná kombinácia.",
+  "price": 10.5,
+  "category": "pizza",
+  "ingredients": [
+    "BBQ omáčka ako základ",
+    "mozzarella",
+    "grilované kuracie kúsky",
+    "červená cibuľa",
+    "kukurica",
+    "syr čedar (voliteľne)"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc3ec27e56e215459db95"
+  },
+  "numberOrder": 7,
+  "name": "Veggie Garden",
+  "description": "Paprika, kukurica, paradajky, špenát a syr – čerstvosť na každom kúsku.",
+  "price": 9.2,
+  "category": "pizza",
+  "ingredients": [
+    "paradajkový základ",
+    "mozzarella",
+    "paprika (červená/zelená)",
+    "kukurica",
+    "cherry paradajky",
+    "baby špenát alebo rukola",
+    "červená cibuľa"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc44527e56e215459db9f"
+  },
+  "numberOrder": 8,
+  "name": "LK Špeciál",
+  "description": "Tajný recept našich pizzamajstrov – mix vybraných ingrediencií, ktorý meníme každý mesiac.",
+  "price": 11.5,
+  "category": "pizza",
+  "ingredients": [
+    "/tajné ingrediencie/"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc46627e56e215459dba9"
+  },
+  "numberOrder": 1,
+  "name": "Bruschetta s paradajkami a bazalkou ",
+  "description": "",
+  "price": 4.9,
+  "category": "starter",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc47c27e56e215459dbb3"
+  },
+  "numberOrder": 2,
+  "name": "Cesnakové pizza tyčinky s dipom",
+  "description": "",
+  "price": 3.9,
+  "category": "starter",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc4a027e56e215459dbbd"
+  },
+  "numberOrder": 3,
+  "name": "Mozzarella sticks",
+  "description": "",
+  "price": 5.5,
+  "category": "starter",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc4b027e56e215459dbc7"
+  },
+  "numberOrder": 4,
+  "name": "Mini calzone plnené syrom a šunkou",
+  "description": "",
+  "price": 6.2,
+  "category": "starter",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc4c227e56e215459dbd1"
+  },
+  "numberOrder": 2,
+  "name": "Grécky šalát",
+  "description": "",
+  "price": 6.9,
+  "category": "salad",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc4d327e56e215459dbdb"
+  },
+  "numberOrder": 1,
+  "name": "Cézar s kuracím mäsom",
+  "description": "",
+  "price": 7.5,
+  "category": "salad",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc67027e56e215459dc0e"
+  },
+  "numberOrder": 3,
+  "name": "Šalát s mozzarellou a pestom",
+  "description": "",
+  "price": 6.8,
+  "category": "salad",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc67e27e56e215459dc18"
+  },
+  "numberOrder": 1,
+  "name": "Talianske tiramisu",
+  "description": "",
+  "price": 4.5,
+  "category": "dessert",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc68a27e56e215459dc22"
+  },
+  "numberOrder": 2,
+  "name": "Panna cotta s lesným ovocím",
+  "description": "",
+  "price": 5.9,
+  "category": "dessert",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc69727e56e215459dc2c"
+  },
+  "numberOrder": 3,
+  "name": "Domáca pizza Nutella s banánom",
+  "description": "",
+  "price": 5.9,
+  "category": "dessert",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc6bd27e56e215459dc3a"
+  },
+  "numberOrder": 1,
+  "name": "Espresso / Cappuccino / Latte",
+  "description": "",
+  "price": 2,
+  "category": "drink",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc6db27e56e215459dc44"
+  },
+  "numberOrder": 2,
+  "name": "Domáca limonáda",
+  "description": "",
+  "price": 2.9,
+  "category": "drink",
+  "ingredients": [
+    "citrón",
+    "malina",
+    "bazový kvet"
+  ],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc71027e56e215459dc59"
+  },
+  "numberOrder": 3,
+  "name": "Nealko / Minerálky",
+  "description": "",
+  "price": 1.5,
+  "category": "drink",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc72027e56e215459dc63"
+  },
+  "numberOrder": 4,
+  "name": "Pivo / Víno / Prosecco",
+  "description": "",
+  "price": 2.5,
+  "category": "drink",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc76727e56e215459dc6d"
+  },
+  "numberOrder": 1,
+  "name": "Cesnaková so syrom a krutónmi",
+  "description": "Intenzívna cesnaková chuť vyvážená rozpusteným syrom a chrumkavými domácimi krutónmi.",
+  "price": 3.5,
+  "category": "soup",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc77927e56e215459dc77"
+  },
+  "numberOrder": 2,
+  "name": "Paradajková s bazalkou a parmezánom",
+  "description": "Hustá krémová polievka z paradajok s čerstvou bazalkou, doplnená hoblinami parmezánu.",
+  "price": 3.5,
+  "category": "soup",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc78b27e56e215459dc81"
+  },
+  "numberOrder": 3,
+  "name": "Zeleninový vývar s rezancami",
+  "description": "Tradičný číry vývar z koreňovej zeleniny, ochutený bylinkami a podávaný s jemnými rezancami.",
+  "price": 3.2,
+  "category": "soup",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc7a727e56e215459dc8b"
+  },
+  "numberOrder": 4,
+  "name": "Hrachová polievka s údeným",
+  "description": "Hustá a sýta polievka z hrachu, ochutená kúskami údeného mäsa a podávaná s chlebíkom.",
+  "price": 3.8,
+  "category": "soup",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc7cb27e56e215459dc95"
+  },
+  "numberOrder": 5,
+  "name": "Minestrone (vegetariánska)",
+  "description": "Talianska zeleninová polievka s fazuľkami, cestovinou a paradajkovým základom – ľahká a výživná.",
+  "price": 3.9,
+  "category": "soup",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc7da27e56e215459dc9f"
+  },
+  "numberOrder": 6,
+  "name": "Šošovicová s klobásou",
+  "description": "Tradičná slovenská chuť – hustá, jemne pikantná a výborne zasýti.",
+  "price": 3.8,
+  "category": "soup",
+  "ingredients": [],
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc7eb27e56e215459dca9"
+  },
+  "numberOrder": 7,
+  "name": "Krém z pečenej tekvice",
+  "description": "Jemná sezónna polievka z hokkaido tekvice so smotanou, opečenými semienkami a kvapkou tekvicového oleja.",
+  "price": 4.2,
+  "category": "soup",
+  "ingredients": [],
+  "__v": 0
+}]

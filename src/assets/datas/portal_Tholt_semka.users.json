@@ -11,7 +11,7 @@
     "$date": "2025-04-26T20:03:41.743Z"
   },
   "updatedAt": {
-    "$date": "2025-04-26T20:03:41.743Z"
+    "$date": "2025-05-10T19:03:07.351Z"
   },
   "__v": 0
 },
@@ -191,7 +191,7 @@
   },
   "name": "LKPizzeriaAdmin",
   "email": "lkpizzeria@gmail.com",
-  "role": "admin",
+  "role": "hl.admin",
   "salt": "d54935de7860180b0ff734bdf5a1d69a",
   "password": "dfc0128767435de07b2841116da6eefaa8af28857b07bfdaada05536e1fdd1d5c0ca6530bfeabd185d2e74a2a0d6f3569c9c2f5db7eb2141b3847e4da7f4e0ca",
   "createdAt": {
@@ -199,6 +199,23 @@
   },
   "updatedAt": {
     "$date": "2025-04-26T20:30:24.118Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "681fc12927e56e215459db0e"
+  },
+  "name": "LKAdmin",
+  "email": "lkpadmin@gmail.com",
+  "role": "admin",
+  "salt": "dfb26360551cc1e918929cc45d957928",
+  "password": "8f9f6dd3d5bfa6b285c94e229224cbcfe8c2d09052df8f5442d98fd11a28fba97f2dc6b09ef4444a27be664de8545d1a913d08df1e5ef4412463bfa66a694b51",
+  "createdAt": {
+    "$date": "2025-05-10T21:12:09.852Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-10T21:12:47.927Z"
   },
   "__v": 0
 }]
