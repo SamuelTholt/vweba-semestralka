@@ -1,6 +1,6 @@
 import NavigationBar from "../components/navigationBar/NavigationBar";
 import HeaderWithImage from "../components/HeaderWithImage";
-import imageMenu from "../../assets/images/menu.jpg"
+import imageMenu from "../../assets/images/menu-min.jpg"
 import MenuSection from "../page_sections/MenuSection";
 import AddMenuSection from "../page_sections/ButtonAddMenuSection";
 
